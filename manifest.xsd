@@ -1,0 +1,2466 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Update log
+    2023.12.27 add: xsdVersion, displayDesktop, processContents="lax", _name, 
+    2024.01.04 add: SupportPictorialButton, ContentProviderBinder, IntentCommand-market, Variable-any
+    2024.01.05 add: Item-value 
+    2024.01.10 add: AniFrame-varSpeedFlag
+ -->
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="qualified">
+    <xs:element name="Lockscreen">
+        <xs:complexType>
+            <xs:choice maxOccurs="unbounded" minOccurs="0">
+                <xs:element ref="Wallpaper" />
+                <xs:element ref="ExternalCommands" />
+                <xs:element ref="Weather" />
+                <xs:element ref="Calendar" />
+                <xs:element ref="Var" />
+                <xs:element ref="VarArray" />
+                <xs:element ref="Group" />
+                <xs:element ref="Frame" />
+                <xs:element ref="Image" />
+                <xs:element ref="SourceImage" />
+                <xs:element ref="ImageNumber" />
+                <xs:element ref="ImageSeries" />
+                <xs:element ref="WaterWallpaper" />
+                <xs:element ref="Time" />
+                <xs:element ref="DateTime" />
+                <xs:element ref="Slider" />
+                <xs:element ref="Button" />
+                <xs:element ref="SupportPictorialButton" />
+                <xs:element ref="SliderEx" />
+                <xs:element ref="Unlocker" />
+                <xs:element ref="VariableBinders" />
+                <xs:element ref="UnlockerView" />
+                <xs:element ref="MusicControl" />
+                <xs:element ref="Video" />
+                <xs:element ref="VirtualScreen" />
+                <xs:element ref="UserDefineText" />
+                <xs:element ref="ParticleView" />
+                <xs:element ref="Graph" />
+                <xs:element ref="MeshImage" />
+                <xs:element ref="Rectangle" />
+                <xs:element ref="Circle" />
+                <xs:element ref="Ellipse" />
+                <xs:element ref="Line" />
+                <xs:element ref="Arc" />
+                <xs:element ref="Marquee" />
+                <xs:element ref="FlipBook" />
+                <xs:element ref="CountDownTime" />
+                <xs:element ref="VortexView" />
+                <xs:element ref="DropView" />
+                <xs:element ref="Array" />
+                <xs:element ref="VariableFramerate" />
+                <xs:element ref="Situations" />
+                <xs:element ref="Fold" />
+                <xs:element ref="ParticleScatter" />
+                <xs:element ref="PathUtil" />
+                <xs:element ref="PathRun" />
+                <xs:element ref="ImageFilterView" />
+                <xs:element ref="ImageParticleView" />
+                <xs:element ref="Bloom" />
+                <xs:element ref="DropPhysicalView" />
+                <xs:element ref="Text" />
+                <xs:element ref="Geometry" />
+                <xs:element ref="VR" />
+                <xs:element ref="WindowParallax" />
+                <xs:element ref="ScaleParallax" />
+                <xs:element ref="MultiLayer" />
+                <xs:element ref="ARBase" />
+                <xs:element ref="GameFrame" />
+                <xs:element ref="StereoView" />
+                <xs:element ref="FluidsView" />
+                <xs:element ref="StereoDropView" />
+                <xs:element ref="MediaControl" />
+                <xs:element ref="LrcView" />
+                <xs:element ref="MediaIcon" />
+                <xs:element ref="MediaProgressbar" />
+                <xs:element ref="Healthy" />
+                <xs:element ref="Pets" />
+                <xs:element ref="PetGroup" />
+                <xs:element ref="PetSkill" />
+                <xs:element ref="CollisionWord" />
+                <xs:element ref="PressingAPNGView" />
+                <xs:element ref="FluidView3D" />
+                <xs:element maxOccurs="1" minOccurs="0" ref="ScheduleElement" />
+                <xs:element ref="EditGroup" />
+                <xs:element ref="EditText" />
+                <xs:element maxOccurs="1" minOccurs="0" ref="BluetoothBattery" />
+                <!-- <xs:any processContents="lax" /> -->
+            </xs:choice>
+            <xs:attribute name="frameRate" default="60" />
+            <xs:attribute name="screenWidth" type="numType" />
+            <xs:attribute name="screenHeight" type="numType" />
+            <xs:attribute name="vibrate" type="booleanType" />
+            <xs:attribute name="version" type="numType" />
+            <xs:attribute name="xsdVersion" type="numType" />
+            <xs:attribute name="pressure" type="booleanType" />
+            <xs:attribute name="displayDesktop" type="booleanType" />
+            <xs:attribute name="chargeAnimTime" default="9" type="xs:integer" />
+            <xs:attribute name="holderTextColor" type="colorType" />
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="CollisionWorld" substitutionGroup="CollisionWord" />
+    <xs:element name="Texture" substitutionGroup="Image" />
+    <xs:element name="Root" substitutionGroup="Lockscreen" />
+    <xs:element name="Diy" substitutionGroup="Lockscreen" />
+    <xs:element name="Widget" substitutionGroup="Lockscreen" />
+    <xs:element name="CommonWallpaper" substitutionGroup="Lockscreen" />
+    <xs:element name="BinderList" substitutionGroup="VariableBinders" />
+
+    <xs:element name="PressingAPNGView" type="imageType" />
+
+    <!-- 编辑组元素组件，可以把编辑框元素包含在组中，同时控制显示隐藏，设置动画等 -->
+    <xs:element name="EditGroup">
+        <xs:complexType>
+            <xs:choice maxOccurs="unbounded" minOccurs="0">
+                <xs:element ref="EditText" />
+            </xs:choice>
+            <xs:attribute name="name" type="stringType" />
+            <xs:attribute name="x" default="0" type="expression" />
+            <xs:attribute name="y" default="0" type="expression" />
+            <xs:attribute name="w" default="0" type="expression" />
+            <xs:attribute name="h" default="0" type="expression" />
+            <xs:attribute name="width" default="0" type="expression" />
+            <xs:attribute name="height" default="0" type="expression" />
+            <xs:attribute name="rotation" default="0" type="expression" />
+            <xs:attribute name="rotationX" default="0" type="expression" />
+            <xs:attribute name="rotationY" default="0" type="expression" />
+            <xs:attribute name="angle" default="0" type="expression" />
+            <xs:attribute name="angleX" default="0" type="expression" />
+            <xs:attribute name="angleY" default="0" type="expression" />
+            <xs:attribute name="alpha" default="255" type="expression" />
+            <xs:attribute name="active" default="1" type="expression" />
+            <xs:attribute name="visibility" default="1" type="expression" />
+            <xs:attribute name="layered" type="expression" />
+            <xs:attribute name="clip" type="booleanType" />
+            <xs:attribute name="align" type="stringType" />
+            <xs:attribute name="alignV" type="stringType" />
+            <xs:attribute name="hint" type="stringType" use="required" />
+        </xs:complexType>
+    </xs:element>
+
+    <!-- 编辑框 -->
+    <xs:element name="EditText">
+        <xs:complexType>
+            <xs:choice maxOccurs="unbounded" minOccurs="0">
+                <xs:group ref="animationGroup" />
+                <xs:element ref="PathItem" />
+            </xs:choice>
+            <xs:attributeGroup ref="viewCom" />
+            <xs:attribute name="size" type="expression" />
+            <xs:attribute name="color" type="colorType" />
+            <xs:attribute name="bold" type="booleanType" />
+            <xs:attribute name="shadowColor" type="colorType" />
+            <xs:attribute name="shadowDx" type="numType" />
+            <xs:attribute name="shadowDy" type="numType" />
+            <xs:attribute name="Radius" type="numType" />
+            <xs:attribute name="marquee" type="booleanType" />
+            <xs:attribute name="showTime" type="expression" />
+            <xs:attribute name="showStyle" default="0" type="expression" />
+            <xs:attribute name="tileMode" type="stringType" />
+            <xs:attribute name="marqueeColor" type="colorType" />
+            <xs:attribute name="spaceTimes" default="1" type="numType" />
+            <xs:attribute name="spaceExtraAdd" default="0" type="numType" />
+            <xs:attribute name="canPath" type="booleanType" />
+            <xs:attribute name="run" type="expression" />
+            <xs:attribute name="speed" type="expression" />
+            <xs:attribute name="autoLineFeed" type="booleanType" />
+            <xs:attribute name="format" type="stringType" />
+            <xs:attribute name="paras" type="stringType" />
+            <xs:attribute name="text" type="xs:string" />
+            <xs:attribute name="textExp" type="stringType" />
+            <xs:attribute name="textalign" type="stringType" />
+            <xs:attribute name="scrollDisplay" type="booleanType" />
+            <xs:attribute name="marqueeRepeatLimit" type="numType" />
+            <xs:attribute name="clickable" type="booleanType" />
+            <xs:attribute name="delayTime" default="3000" type="numType" />
+            <xs:attribute name="editId" type="numType" use="required" />
+            <xs:attribute name="hint" type="stringType" />
+        </xs:complexType>
+    </xs:element>
+
+    <!--日程声明 -->
+    <xs:element name="ScheduleElement" />
+
+    <!--蓝牙耳机电量 -->
+    <xs:element name="BluetoothBattery" />
+
+    <xs:element name="StereoDropView">
+        <xs:complexType>
+            <xs:choice maxOccurs="unbounded" minOccurs="0">
+                <xs:element ref="StereoImage" />
+                <xs:element ref="StereoDropItem" />
+                <xs:element ref="SourcesAnimation" />
+            </xs:choice>
+            <xs:attribute name="gravityX" type="expression" />
+            <xs:attribute name="gravityY" type="expression" />
+            <xs:attribute name="gravityZ" type="expression" />
+            <xs:attribute name="visibility" type="expression" />
+            <xs:attribute name="x" type="expression" />
+            <xs:attribute name="y" type="expression" />
+            <xs:attribute name="width" type="expression" />
+            <xs:attribute name="height" type="expression" />
+            <xs:attribute name="depth" type="xs:float" />
+            <xs:attribute name="bgSrc" type="stringType" />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="StereoImage">
+        <xs:complexType>
+            <xs:attribute name="x" type="xs:float" />
+            <xs:attribute name="y" type="xs:float" />
+            <xs:attribute name="depth" type="xs:float" />
+            <xs:attribute name="src" type="stringType" />
+            <xs:attribute name="visibility" type="expression" />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="StereoDropItem">
+        <xs:complexType>
+            <xs:choice maxOccurs="unbounded" minOccurs="0">
+                <xs:element ref="ItemVelocity" />
+                <xs:element ref="ItemPosition" />
+                <xs:element ref="SourcesAnimation" />
+                <xs:element ref="ItemConvergence" />
+            </xs:choice>
+            <xs:attribute name="maxCount" type="xs:int" />
+            <xs:attribute name="src" type="stringType" />
+            <xs:attribute name="buildSpeed" type="xs:float" />
+            <xs:attribute name="visibility" type="expression" />
+            <xs:attribute name="size" type="xs:int" />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="ItemConvergence">
+        <xs:complexType>
+            <xs:attribute name="x" type="expression" />
+            <xs:attribute name="y" type="expression" />
+            <xs:attribute name="z" type="expression" />
+            <xs:attribute name="velocity" type="stringType" />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="ItemVelocity">
+        <xs:complexType>
+            <xs:attribute name="isRandom" type="booleanType" />
+            <xs:attribute name="velocityX" type="xs:float" />
+            <xs:attribute name="velocityY" type="xs:float" />
+            <xs:attribute name="velocityZ" type="xs:float" />
+            <xs:attribute name="lowestVelocityX" type="xs:float" />
+            <xs:attribute name="lowestVelocityY" type="xs:float" />
+            <xs:attribute name="lowestVelocityZ" type="xs:float" />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="ItemPosition">
+        <xs:complexType>
+            <xs:attribute name="isRandom" type="booleanType" />
+            <xs:attribute name="x" type="xs:float" />
+            <xs:attribute name="y" type="xs:float" />
+            <xs:attribute name="z" type="xs:float" />
+        </xs:complexType>
+    </xs:element>
+    <!-- 运动健康 -->
+    <xs:element name="Healthy">
+        <xs:complexType>
+            <xs:choice maxOccurs="unbounded" minOccurs="0">
+                <xs:element ref="Var" />
+            </xs:choice>
+            <xs:attribute name="polling" type="booleanType" />
+            <xs:attribute name="time" type="xs:double" />
+        </xs:complexType>
+    </xs:element>
+    <!-- 流体动效 -->
+    <xs:element name="FluidsView">
+        <xs:complexType>
+            <xs:choice maxOccurs="unbounded" minOccurs="0">
+                <xs:element ref="CircleShape" />
+                <xs:element ref="PolygonShape" />
+            </xs:choice>
+            <xs:attribute name="color" type="colorType" />
+            <xs:attribute name="gravityRatio" type="expression" />
+            <xs:attribute name="viscosity" type="expression" />
+            <xs:attribute name="waterAlpha" type="expression" />
+            <xs:attribute name="waterAlphaThreshold" type="expression" />
+            <xs:attribute name="bgSrc" type="stringType" />
+            <xs:attribute name="scaleType" type="stringType" />
+            <xs:attribute name="srcid" type="expression" />
+            <xs:attribute name="persist" type="booleanType" />
+        </xs:complexType>
+    </xs:element>
+
+    <!-- 圆形shape -->
+    <xs:element name="CircleShape">
+        <xs:complexType>
+            <xs:attributeGroup ref="shapeCom" />
+            <xs:attribute name="radius" type="expression" />
+        </xs:complexType>
+    </xs:element>
+
+    <!-- 方形的shape -->
+    <xs:element name="PolygonShape">
+        <xs:complexType>
+            <xs:attributeGroup ref="shapeCom" />
+            <xs:attribute name="hx" type="expression" />
+            <xs:attribute name="hy" type="expression" />
+            <xs:attribute name="angle" type="expression" />
+        </xs:complexType>
+    </xs:element>
+
+    <!-- shape的公用属性 -->
+    <xs:attributeGroup name="shapeCom">
+        <xs:attribute name="type" type="stringType" />
+        <xs:attribute name="xPosition" type="expression" />
+        <xs:attribute name="yPosition" type="expression" />
+    </xs:attributeGroup>
+
+    <xs:element name="StereoView">
+        <xs:complexType>
+            <xs:choice maxOccurs="unbounded" minOccurs="0">
+                <xs:element ref="StereoGroup" />
+            </xs:choice>
+            <xs:attributeGroup ref="viewCom" />
+            <xs:attribute name="sAngle" type="xs:double" />
+            <xs:attribute name="can3D" type="xs:double" />
+            <xs:attribute name="resistance" type="xs:double" />
+            <xs:attribute name="fixed" type="xs:int" />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="ScrawlView">
+        <xs:complexType>
+            <xs:attributeGroup ref="viewCom" />
+            <xs:attribute name="paintColor" type="expression" />
+            <xs:attribute name="paintWidth" type="expression" />
+            <xs:attribute name="paintType" type="expression" />
+            <xs:attribute name="back" type="expression" />
+            <xs:attribute name="save" type="expression" />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="StereoGroup">
+        <xs:complexType>
+            <xs:choice maxOccurs="unbounded" minOccurs="0">
+                <xs:element ref="Image" />
+                <xs:element ref="Text" />
+                <xs:element ref="Button" />
+                <xs:element ref="EditGroup" />
+                <xs:element ref="EditText" />
+            </xs:choice>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="Slice">
+        <xs:complexType>
+            <xs:attribute name="time" type="stringType" />
+            <xs:attribute name="duration" type="stringType" />
+            <xs:attribute name="type" type="stringType" />
+            <xs:attribute name="intensity" type="stringType" />
+            <xs:attribute name="sharpness" type="stringType" />
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Sharpness">
+        <xs:complexType>
+            <xs:attribute name="time" type="stringType" />
+            <xs:attribute name="parameters" type="stringType" />
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Intensitiy">
+        <xs:complexType>
+            <xs:attribute name="time" type="stringType" />
+            <xs:attribute name="parameters" type="stringType" />
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Wave">
+        <xs:complexType>
+            <xs:choice maxOccurs="unbounded" minOccurs="0">
+                <xs:element ref="Slice" />
+            </xs:choice>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Adjustcurve">
+        <xs:complexType>
+            <xs:choice maxOccurs="unbounded" minOccurs="0">
+                <xs:element ref="Sharpness" />
+                <xs:element ref="Intensitiy" />
+            </xs:choice>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Vibrate">
+        <xs:complexType>
+            <xs:choice maxOccurs="unbounded" minOccurs="0">
+                <xs:element ref="Wave" />
+                <xs:element ref="Adjustcurve" />
+            </xs:choice>
+            <xs:attribute name="loop" type="stringType" />
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="VibrateCommand">
+        <xs:complexType>
+            <xs:choice maxOccurs="unbounded" minOccurs="0">
+                <xs:element ref="Vibrate" />
+            </xs:choice>
+            <xs:attribute name="id" type="stringType" />
+            <xs:attribute name="type" type="stringType" />
+            <xs:attribute name="define" type="stringType" />
+            <xs:attribute name="adid" type="stringType" />
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="RefreshWeatherCommand"></xs:element>
+
+    <xs:element name="CollBody">
+        <xs:complexType>
+            <xs:choice maxOccurs="unbounded" minOccurs="0">
+                <xs:element ref="IntentCommand" />
+                <xs:element ref="Texture" />
+            </xs:choice>
+            <xs:attribute name="id" type="stringType" />
+            <xs:attribute name="type" type="expression" />
+            <xs:attribute name="shape" type="expression" />
+            <xs:attribute name="imgsrc" type="expression" />
+            <xs:attribute name="x" type="expression" />
+            <xs:attribute name="y" type="expression" />
+            <xs:attribute name="width" type="expression" />
+            <xs:attribute name="height" type="expression" />
+            <xs:attribute name="radius" type="expression" />
+            <xs:attribute name="friction" type="expression" />
+            <xs:attribute name="restitution" type="expression" />
+            <xs:attribute name="density" type="expression" />
+            <xs:attribute name="forceX" type="expression" />
+            <xs:attribute name="forceY" type="expression" />
+            <xs:attribute name="vx" type="expression" />
+            <xs:attribute name="vy" type="expression" />
+            <xs:attribute name="isActive" type="expression" />
+            <xs:attribute name="musicSrc" type="stringType" />
+            <xs:attribute name="musickeepCur" type="stringType" />
+            <xs:attribute name="musicloop" type="expression" />
+            <xs:attribute name="vibrateTime" type="stringType" />
+            <xs:attribute name="statevar" type="stringType" />
+            <xs:attribute name="clickable" type="expression" />
+            <xs:attribute name="gesture" type="expression" />
+            <xs:attribute name="opx" type="stringType" />
+            <xs:attribute name="opy" type="stringType" />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="FluidView3D">
+        <xs:complexType>
+            <xs:choice maxOccurs="unbounded" minOccurs="0">
+                <xs:element ref="Model" />
+                <xs:element ref="Fluid" />
+            </xs:choice>
+            <xs:attribute name="x" type="expression" />
+            <xs:attribute name="y" type="expression" />
+            <xs:attribute name="w" type="expression" />
+            <xs:attribute name="h" type="expression" />
+            <xs:attribute name="bgSrc" type="stringType" />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="Model">
+        <xs:complexType>
+            <xs:attribute name="mx" type="stringType" />
+            <xs:attribute name="my" type="stringType" />
+            <xs:attribute name="mz" type="stringType" />
+            <xs:attribute name="mscalex" type="stringType" />
+            <xs:attribute name="mscaley" type="stringType" />
+            <xs:attribute name="mscalez" type="stringType" />
+            <xs:attribute name="mSrc" type="stringType" />
+            <xs:attribute name="radianceSrc" type="stringType" />
+            <xs:attribute name="irradianceSrc" type="stringType" />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="Fluid">
+        <xs:complexType>
+            <xs:attribute name="fx" type="stringType" />
+            <xs:attribute name="fy" type="stringType" />
+            <xs:attribute name="fz" type="stringType" />
+            <xs:attribute name="fscalex" type="stringType" />
+            <xs:attribute name="fscaley" type="stringType" />
+            <xs:attribute name="fscalez" type="stringType" />
+            <xs:attribute name="fl" type="stringType" />
+            <xs:attribute name="fw" type="stringType" />
+            <xs:attribute name="fh" type="stringType" />
+            <xs:attribute name="fradius" type="stringType" />
+            <xs:attribute name="fshape" type="stringType" />
+            <xs:attribute name="fedge" type="stringType" />
+            <xs:attribute name="fvf" type="stringType" />
+            <xs:attribute name="fgravity" type="stringType" />
+            <xs:attribute name="fboundarySrc" type="stringType" />
+            <xs:attribute name="fSrc" type="stringType" />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="Fluid3dCommand">
+        <xs:complexType>
+            <xs:attribute name="fAddOrReduce" type="stringType" />
+            <xs:attribute name="fSrc" type="stringType" />
+            <xs:attribute name="bgSrc" type="stringType" />
+            <xs:attribute name="fvf" type="stringType" />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="CollisionWord">
+        <xs:complexType>
+            <xs:choice maxOccurs="unbounded" minOccurs="0">
+                <xs:element ref="CollBody" />
+                <xs:element ref="Texture" />
+            </xs:choice>
+            <xs:attribute name="vecX" type="expression" />
+            <xs:attribute name="vecY" type="expression" />
+            <xs:attribute name="x" type="expression" />
+            <xs:attribute name="y" type="expression" />
+            <xs:attribute name="width" type="expression" />
+            <xs:attribute name="height" type="expression" />
+            <xs:attribute name="defBourderLine" type="expression" />
+            <xs:attribute name="accCoef" type="expression" />
+            <xs:attribute name="minShake" type="expression" />
+            <xs:attribute name="shakeCoef" type="expression" />
+            <xs:attribute name="minMicroDb" type="expression" />
+            <xs:attribute name="microCoef" type="expression" />
+            <xs:attribute name="woldImgSrc" type="stringType" />
+            <xs:attribute name="worldImgSrc" type="stringType" />
+            <xs:attribute name="woldImgType" type="stringType" />
+            <xs:attribute name="worldImgType" type="stringType" />
+            <xs:attribute name="gwidth" type="expression" />
+            <xs:attribute name="gheight" type="expression" />
+            <xs:attribute name="visibility" type="expression" />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="CollBodyCommand">
+        <xs:complexType>
+            <xs:attribute name="collbodyid" type="stringType" />
+            <xs:attribute name="forceX" type="expression" />
+            <xs:attribute name="forceY" type="expression" />
+            <xs:attribute name="vx" type="expression" />
+            <xs:attribute name="vy" type="expression" />
+            <xs:attribute name="isActive" type="stringType" />
+            <xs:attribute name="type" type="stringType" />
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="RefreshHealthyCommand">
+        <xs:complexType></xs:complexType>
+    </xs:element>
+    <xs:element name="ProgressCommand">
+        <xs:complexType>
+            <xs:attribute name="mode" type="xs:int" />
+            <xs:attribute name="change" type="xs:int" />
+            <xs:attribute name="amplitude" type="xs:int" />
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Calendar">
+        <xs:complexType>
+            <xs:choice maxOccurs="unbounded" minOccurs="0">
+                <xs:element ref="Var" />
+            </xs:choice>
+            <xs:attribute name="card" type="stringType" />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="Weather">
+        <xs:complexType>
+            <xs:choice maxOccurs="unbounded" minOccurs="0">
+                <xs:element ref="Var" />
+            </xs:choice>
+            <xs:attribute name="globalPersist" type="stringType" />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="GameFrame">
+        <xs:complexType>
+            <xs:choice maxOccurs="unbounded" minOccurs="0">
+                <xs:element ref="PPsIds" />
+            </xs:choice>
+            <xs:attribute name="name" type="stringType" />
+            <xs:attribute name="x" type="expression" />
+            <xs:attribute name="y" type="expression" />
+            <xs:attribute name="w" type="expression" />
+            <xs:attribute name="h" type="expression" />
+            <xs:attribute name="path" type="stringType" />
+            <xs:attribute name="brightScreen" type="expression" />
+            <xs:attribute name="visibility" type="expression" />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="PPsIds">
+        <xs:complexType>
+            <xs:attribute name="adLocId" type="stringType" />
+            <xs:attribute name="adLocName" type="stringType" />
+            <xs:attribute name="size" type="stringType" />
+            <xs:attribute name="type" type="stringType" />
+            <xs:attribute name="visibility" type="expression" />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="ARBase">
+        <xs:complexType>
+            <xs:choice maxOccurs="unbounded" minOccurs="0">
+                <xs:element ref="Modules" />
+            </xs:choice>
+            <xs:attribute name="bridgeAnim" type="stringType" />
+            <xs:attribute name="skybox" type="stringType" />
+            <xs:attribute name="diffuse" type="stringType" />
+            <xs:attribute name="specular" type="stringType" />
+            <xs:attribute name="modulePositionType" type="stringType" />
+            <xs:attribute name="visibility" type="expression" />
+            <xs:attribute name="setVideoPlayMode" type="stringType" />
+            <xs:attribute name="chooseId" type="expression" />
+            <xs:attribute name="openAnimation" type="expression" />
+            <xs:attribute name="videoTime" type="xs:long" />
+            <xs:attribute name="brightScreen" type="expression" />
+            <xs:attribute name="mediaType" type="expression" />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="Modules">
+        <xs:complexType>
+            <xs:choice maxOccurs="unbounded" minOccurs="0">
+                <xs:element ref="BoneAnimation" />
+                <xs:element ref="TranslateAnimation" />
+            </xs:choice>
+            <xs:attribute name="src" type="stringType" />
+            <xs:attribute name="x" type="expression" />
+            <xs:attribute name="y" type="expression" />
+            <xs:attribute name="z" type="expression" />
+            <xs:attribute name="id" type="xs:long" />
+            <xs:attribute name="rotateX" type="xs:double" />
+            <xs:attribute name="rotateY" type="xs:double" />
+            <xs:attribute name="rotateZ" type="xs:double" />
+            <xs:attribute name="scale" type="xs:double" />
+            <xs:attribute name="name" type="stringType" />
+            <xs:attribute name="fix" type="stringType" />
+            <xs:attribute name="isRandom" type="stringType" />
+            <xs:attribute name="scrollX" type="stringType" />
+            <xs:attribute name="scrollY" type="stringType" />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="BoneAnimation">
+        <xs:complexType>
+            <xs:attribute name="part" type="stringType" />
+            <xs:attribute name="animation" type="stringType" />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="TranslateAnimation">
+        <xs:complexType>
+            <xs:attribute name="x" type="expression" />
+            <xs:attribute name="y" type="expression" />
+            <xs:attribute name="z" type="expression" />
+            <xs:attribute name="time" type="xs:double" />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="MultiLayer">
+        <xs:complexType>
+            <xs:choice maxOccurs="unbounded" minOccurs="0">
+                <xs:element ref="Layer" />
+            </xs:choice>
+            <xs:attribute name="gravityX" type="expression" />
+            <xs:attribute name="gravityY" type="expression" />
+            <xs:attribute name="touchType" type="expression" />
+            <xs:attribute name="stepX" type="expression" />
+            <xs:attribute name="stepZ" type="expression" />
+            <xs:attribute name="blur" type="expression" />
+            <xs:attribute name="visibility" type="expression" />
+            <xs:attribute name="pitchAngle" type="stringType" />
+            <xs:attribute name="sidesAngle" type="stringType" />
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Layer">
+        <xs:complexType>
+            <xs:choice maxOccurs="unbounded" minOccurs="0">
+                <xs:element ref="Source" />
+            </xs:choice>
+            <xs:attribute name="width" type="expression" />
+            <xs:attribute name="w" type="expression" />
+            <xs:attribute name="height" type="expression" />
+            <xs:attribute name="h" type="expression" />
+            <xs:attribute name="x" type="expression" />
+            <xs:attribute name="y" type="expression" />
+            <xs:attribute name="z" type="expression" />
+            <xs:attribute name="src" type="stringType" />
+            <xs:attribute name="staticCondition" type="stringType" />
+            <xs:attribute name="delay" type="stringType" />
+            <xs:attribute name="repeat" type="stringType" />
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Source">
+        <xs:complexType>
+            <xs:attribute name="frame" type="stringType" />
+            <xs:attribute name="time" type="xs:long" />
+        </xs:complexType>
+    </xs:element>
+    <!-- WindowParallax -->
+    <xs:element name="WindowParallax">
+        <xs:complexType>
+            <xs:choice maxOccurs="unbounded" minOccurs="0">
+                <xs:element ref="LayerInfo" />
+            </xs:choice>
+            <xs:attribute name="posZ" type="expression" />
+        </xs:complexType>
+    </xs:element>
+    <!-- ScaleParallax -->
+    <xs:element name="ScaleParallax">
+        <xs:complexType>
+            <xs:choice maxOccurs="unbounded" minOccurs="0">
+                <xs:element ref="LayerInfo" />
+            </xs:choice>
+            <xs:attribute name="translation" type="stringType" />
+            <xs:attribute name="scale" type="stringType" />
+            <xs:attribute name="radius" type="expression" />
+            <xs:attribute name="rotateRate" type="expression" />
+            <xs:attribute name="blur" type="expression" />
+        </xs:complexType>
+    </xs:element>
+    <!-- LayerInfo -->
+    <xs:element name="LayerInfo">
+        <xs:complexType>
+            <xs:attribute name="src" type="stringType" />
+            <xs:attribute name="x" type="expression" />
+            <xs:attribute name="y" type="expression" />
+            <xs:attribute name="w" type="expression" />
+            <xs:attribute name="h" type="expression" />
+        </xs:complexType>
+    </xs:element>
+    <!--几何图形 -->
+    <xs:element name="Geometry">
+        <xs:complexType>
+            <xs:choice maxOccurs="unbounded" minOccurs="0">
+                <xs:element ref="Rectangle" />
+                <xs:element ref="Circle" />
+                <xs:element ref="Ellipse" />
+                <xs:element ref="Line" />
+                <xs:element ref="Arc" />
+            </xs:choice>
+        </xs:complexType>
+    </xs:element>
+    <!--外部自定义UnlockView组件解析:用于完成一些定制化的解锁方式和效果 -->
+    <xs:element name="UnlockerView">
+        <xs:complexType>
+            <xs:attribute name="class" type="stringType" />
+            <xs:attribute name="params" type="stringType" />
+        </xs:complexType>
+    </xs:element>
+    <!--音乐组件标签解析 -->
+    <xs:element name="MusicControl">
+        <xs:complexType>
+            <xs:choice maxOccurs="unbounded" minOccurs="0">
+                <xs:element name="MusicImage" type="imageType" />
+                <xs:element name="MusicText" type="textType" />
+                <xs:element name="MusicButton" type="buttonType" />
+            </xs:choice>
+            <xs:attribute name="name" type="stringType" />
+            <xs:attribute name="x" type="expression" />
+            <xs:attribute name="y" type="expression" />
+            <xs:attribute name="visibility" type="expression" />
+        </xs:complexType>
+    </xs:element>
+    <!-- 文本 -->
+    <xs:element name="Text" type="textType" />
+    <xs:element name="PathItem">
+        <xs:complexType>
+            <xs:attribute name="type" type="stringType" />
+            <xs:attribute name="x" type="expression" />
+            <xs:attribute name="y" type="expression" />
+            <xs:attribute name="controlX" type="expression" />
+            <xs:attribute name="controlY" type="expression" />
+        </xs:complexType>
+    </xs:element>
+    <!-- 图片 -->
+    <xs:element name="Image" type="imageType" />
+    <!-- 数字图片 -->
+    <xs:element name="ImageNumber">
+        <xs:complexType>
+            <xs:group maxOccurs="unbounded" minOccurs="0" ref="animationGroup" />
+            <xs:attributeGroup ref="viewCom" />
+            <xs:attribute name="src" type="stringType" />
+            <xs:attribute name="number" type="expression" />
+        </xs:complexType>
+    </xs:element>
+    <!-- 用于帧动画的组件 -->
+    <xs:element name="SourceImage">
+        <xs:complexType>
+            <xs:group maxOccurs="unbounded" minOccurs="0" ref="animationGroup" />
+            <xs:attributeGroup ref="viewCom" />
+            <xs:attribute name="sourceName" type="stringType" />
+            <xs:attribute name="format" type="stringType" />
+            <xs:attribute name="from" type="expression" />
+            <xs:attribute name="to" type="expression" />
+            <xs:attribute name="loop" type="booleanType" />
+            <xs:attribute name="space" type="xs:long" />
+            <xs:attribute name="direction" type="numType" />
+            <xs:attribute name="unlockTo" type="expression" />
+        </xs:complexType>
+    </xs:element>
+    <!-- 视频元素 -->
+    <xs:element name="Video">
+        <xs:complexType>
+            <xs:attribute name="name" type="stringType" />
+            <xs:attribute name="x" default="0" type="expression" />
+            <xs:attribute name="y" default="0" type="expression" />
+            <xs:attribute name="w" default="0" type="expression" />
+            <xs:attribute name="h" default="0" type="expression" />
+            <xs:attribute name="width" default="0" type="expression" />
+            <xs:attribute name="height" default="0" type="expression" />
+            <xs:attribute name="play" default="true" type="booleanType" />
+            <xs:attribute name="looping" default="false" type="booleanType" />
+            <xs:attribute name="count" type="expression" />
+            <xs:attribute name="sound" default="0" type="numType" />
+            <xs:attribute name="living" default="false" type="booleanType" />
+            <xs:attribute name="src" type="stringType" />
+            <xs:attribute name="scaleType" default="fill" />
+            <xs:attribute name="visibility" type="expression" />
+            <xs:attribute name="defaultBitmap" type="stringType" />
+            <xs:attribute name="defaultBigBitmap" type="stringType" />
+            <xs:attribute name="defaultBitmapMusic" type="stringType" />
+            <xs:attribute name="isMusic" type="stringType" />
+            <xs:attribute name="isBackground" type="stringType" />
+            <xs:attribute name="turn" type="stringType" />
+            <xs:attribute name="fold_expand_start" type="numType" />
+            <xs:attribute name="fold_expand_end" type="numType" />
+            <xs:attribute name="fold_collapse_big_start" type="numType" />
+            <xs:attribute name="fold_collapse_big_end" type="numType" />
+        </xs:complexType>
+    </xs:element>
+    <!-- 时间元素，自动使用时间数值图片和时间分隔符图片，组成时间元素 -->
+    <xs:element name="Time">
+        <xs:complexType>
+            <xs:group maxOccurs="unbounded" minOccurs="0" ref="animationGroup" />
+            <xs:attributeGroup ref="viewCom" />
+            <xs:attribute name="src" type="stringType" />
+            <xs:attribute name="space" type="expression" />
+        </xs:complexType>
+    </xs:element>
+    <!-- 日期元素 -->
+    <xs:element name="DateTime">
+        <xs:complexType>
+            <xs:attributeGroup ref="viewCom" />
+            <xs:attribute name="color" type="colorType" />
+            <xs:attribute name="size" type="expression" />
+            <xs:attribute name="format" type="stringType" />
+        </xs:complexType>
+    </xs:element>
+    <!-- 用户签名组件，读取手机设置中的用户签名，达到用户自定义文字的效果 -->
+    <xs:element name="UserDefineText">
+        <xs:complexType>
+            <xs:attribute name="name" type="stringType" />
+            <xs:attribute name="x" default="0" type="expression" />
+            <xs:attribute name="y" default="0" type="expression" />
+            <xs:attribute name="w" default="0" type="expression" />
+            <xs:attribute name="h" default="0" type="expression" />
+            <xs:attribute name="width" default="0" type="expression" />
+            <xs:attribute name="height" default="0" type="expression" />
+            <xs:attribute name="alpha" default="255" type="expression" />
+            <xs:attribute name="visibility" default="1" type="expression" />
+            <xs:attribute name="color" type="colorType" />
+            <xs:attribute name="size" type="numType" />
+            <xs:attribute name="format" type="stringType" />
+        </xs:complexType>
+    </xs:element>
+    <!-- 壁纸元素 -->
+    <xs:element name="Wallpaper" type="imageType" />
+    <!-- 文本图片 -->
+    <xs:element name="ImageSeries">
+        <xs:complexType>
+            <xs:attributeGroup ref="viewCom" />
+            <xs:attribute name="src" type="expression" />
+            <xs:attribute name="string" type="expression" />
+            <xs:attribute name="mapList" type="stringType" />
+            <xs:attribute name="space" type="expression" />
+        </xs:complexType>
+    </xs:element>
+    <!-- 倒计时 -->
+    <xs:element name="CountDownTime">
+        <xs:complexType>
+            <xs:attribute name="name" type="stringType" />
+            <xs:attribute name="date" type="stringType" />
+            <xs:attribute name="countDownType" type="stringType" />
+            <xs:attribute name="unit" default="day" type="stringType" />
+        </xs:complexType>
+    </xs:element>
+    <!-- 矩形 -->
+    <xs:element name="Rectangle">
+        <xs:complexType>
+            <xs:group maxOccurs="unbounded" minOccurs="0" ref="animationGroup" />
+            <xs:attributeGroup ref="geometryGroup" />
+            <xs:attribute name="cornerRadius" type="stringType" />
+        </xs:complexType>
+    </xs:element>
+    <!-- 圆形 -->
+    <xs:element name="Circle">
+        <xs:complexType>
+            <xs:group maxOccurs="unbounded" minOccurs="0" ref="animationGroup" />
+            <xs:attributeGroup ref="geometryGroup" />
+            <xs:attribute name="r" type="expression" />
+        </xs:complexType>
+    </xs:element>
+    <!-- 椭圆 -->
+    <xs:element name="Ellipse">
+        <xs:complexType>
+            <xs:group maxOccurs="unbounded" minOccurs="0" ref="animationGroup" />
+            <xs:attributeGroup ref="geometryGroup" />
+        </xs:complexType>
+    </xs:element>
+    <!-- 直线 -->
+    <xs:element name="Line">
+        <xs:complexType>
+            <xs:group maxOccurs="unbounded" minOccurs="0" ref="animationGroup" />
+            <xs:attributeGroup ref="geometryGroup" />
+            <xs:attribute name="x1" type="expression" />
+            <xs:attribute name="y1" type="expression" />
+        </xs:complexType>
+    </xs:element>
+    <!-- 扇形 -->
+    <xs:element name="Arc">
+        <xs:complexType>
+            <xs:group maxOccurs="unbounded" minOccurs="0" ref="animationGroup" />
+            <xs:attributeGroup ref="geometryGroup" />
+            <xs:attribute name="startAngle" type="expression" />
+            <xs:attribute name="sweepAngle" type="expression" />
+            <xs:attribute name="closure" type="booleanType" />
+        </xs:complexType>
+    </xs:element>
+    <!-- 填充渐变 -->
+    <xs:element name="FillGradient" type="shadeType" />
+    <!-- 描边渐变 -->
+    <xs:element name="StrokeGradient" type="shadeType" />
+    <!-- 渐变type -->
+    <xs:complexType name="shadeType">
+        <xs:choice maxOccurs="unbounded" minOccurs="0">
+            <xs:element ref="Linear" />
+            <xs:element ref="Radial" />
+            <xs:element ref="Sweep" />
+        </xs:choice>
+    </xs:complexType>
+    <!-- 线性渐变的效果：渐变颜色沿渐变轴（x,y,x1,y1）呈线性渐变 -->
+    <xs:element name="Linear">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="0" ref="GradientPoint" />
+            </xs:sequence>
+            <xs:attribute name="x" type="expression" />
+            <xs:attribute name="y" type="expression" />
+            <xs:attribute name="x1" type="expression" />
+            <xs:attribute name="y1" type="expression" />
+            <xs:attribute name="tileMode" type="stringType" />
+        </xs:complexType>
+    </xs:element>
+    <!-- 放射渐变：渐变颜色以设置的渐变中心点为圆心，根据半径r呈环形渐变 -->
+    <xs:element name="Radial">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="0" ref="GradientPoint" />
+            </xs:sequence>
+            <xs:attribute name="x" type="expression" />
+            <xs:attribute name="y" type="expression" />
+            <xs:attribute name="r" type="expression" />
+            <xs:attribute name="tileMode" type="stringType" />
+        </xs:complexType>
+    </xs:element>
+    <!-- 扫描渐变：渐变颜色以设置的中心点为圆心，呈类似雷达扫描的渐变 -->
+    <xs:element name="Sweep">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="0" ref="GradientPoint" />
+            </xs:sequence>
+            <xs:attribute name="x" type="expression" />
+            <xs:attribute name="y" type="expression" />
+        </xs:complexType>
+    </xs:element>
+    <!-- 渐变子标签:用于设置渐变颜色和渐变位置 -->
+    <xs:element name="GradientPoint">
+        <xs:complexType>
+            <xs:attribute name="color" type="colorType" />
+            <xs:attribute name="position" type="expression" />
+        </xs:complexType>
+    </xs:element>
+    <!-- 组元素组件，可以把图片、按钮、文字、时间等元素包含在组中，同时控制显示隐藏，设置动画等 -->
+    <xs:element name="Group">
+        <xs:complexType>
+            <xs:group maxOccurs="unbounded" minOccurs="0" ref="viewGroup" />
+            <xs:attribute name="name" type="stringType" />
+            <xs:attribute name="x" default="0" type="expression" />
+            <xs:attribute name="y" default="0" type="expression" />
+            <xs:attribute name="w" default="0" type="expression" />
+            <xs:attribute name="h" default="0" type="expression" />
+            <xs:attribute name="width" default="0" type="expression" />
+            <xs:attribute name="height" default="0" type="expression" />
+            <xs:attribute name="rotation" default="0" type="expression" />
+            <xs:attribute name="rotationX" default="0" type="expression" />
+            <xs:attribute name="rotationY" default="0" type="expression" />
+            <xs:attribute name="angle" default="0" type="expression" />
+            <xs:attribute name="angleX" default="0" type="expression" />
+            <xs:attribute name="angleY" default="0" type="expression" />
+            <xs:attribute name="alpha" default="255" type="expression" />
+            <xs:attribute name="active" default="1" type="expression" />
+            <xs:attribute name="visibility" default="1" type="expression" />
+            <xs:attribute name="layered" type="expression" />
+            <xs:attribute name="clip" type="booleanType" />
+            <xs:attribute name="align" type="stringType" />
+            <xs:attribute name="alignV" type="stringType" />
+        </xs:complexType>
+    </xs:element>
+    <!-- 虚拟屏幕，用于做翻书，百叶窗之类的效果 -->
+    <xs:element name="VirtualScreen">
+        <xs:complexType>
+            <xs:group maxOccurs="unbounded" minOccurs="0" ref="virtualGroup" />
+            <xs:attribute name="name" type="stringType" />
+        </xs:complexType>
+    </xs:element>
+    <!-- The type Drop view -->
+    <xs:element name="DropView">
+        <xs:complexType>
+            <xs:choice maxOccurs="unbounded" minOccurs="0">
+                <xs:element ref="Item" />
+                <xs:group ref="virtualGroup" />
+            </xs:choice>
+            <xs:attribute name="meteor" type="booleanType" />
+            <xs:attribute name="isFluttering" type="booleanType" />
+            <xs:attribute name="isSpeedRandom" type="booleanType" />
+            <xs:attribute name="isRotating" type="booleanType" />
+            <xs:attribute name="isRandomSize" type="booleanType" />
+            <xs:attribute name="flutterAmplitude" default="1" type="numType" />
+            <xs:attribute name="flutterPeriod" default="1" type="numType" />
+            <xs:attribute name="lowestSpeed" default="0" type="numType" />
+            <xs:attribute name="w" default="0" type="numType" />
+            <xs:attribute name="h" default="0" type="numType" />
+        </xs:complexType>
+    </xs:element>
+    <!-- Item -->
+    <xs:element name="Item">
+        <xs:complexType>
+            <xs:choice maxOccurs="unbounded" minOccurs="0">
+                <xs:element ref="Velocity" />
+                <xs:element ref="Angle" />
+                <xs:element name="Position">
+                    <xs:complexType>
+                        <xs:attribute name="x" type="numType" />
+                        <xs:attribute name="y" type="numType" />
+                        <xs:attribute name="isRandom" type="booleanType" />
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="AngleVelocity">
+                    <xs:complexType>
+                        <xs:attribute name="angleVelocity" type="xs:float" />
+                        <xs:attribute name="lowestAngleVelocity" type="xs:float" />
+                        <xs:attribute name="isRandom" type="booleanType" />
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="Weight">
+                    <xs:complexType>
+                        <xs:attribute name="value" type="xs:float" />
+                        <xs:attribute name="lowestWeight" type="xs:float" />
+                        <xs:attribute name="isRandom" type="booleanType" />
+                    </xs:complexType>
+                </xs:element>
+                <xs:element ref="Trigger" />
+            </xs:choice>
+            <xs:attribute name="number" type="numType" />
+            <xs:attribute name="width" type="expression" />
+            <xs:attribute name="initSpeedX" type="expression" />
+            <xs:attribute name="initSpeedY" type="expression" />
+            <xs:attribute name="height" type="expression" />
+            <xs:attribute name="src" type="stringType" />
+            <xs:attribute name="value" type="expression" />
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Velocity" substitutionGroup="ItemVelocity" />
+    <xs:element name="Angle">
+        <xs:complexType>
+            <xs:attribute name="isRandom" type="booleanType" />
+            <xs:attribute name="angle" type="numType" />
+        </xs:complexType>
+    </xs:element>
+    <!-- 按钮 -->
+    <xs:element name="Button" type="buttonType" />
+    <xs:element name="SupportPictorialButton" type="buttonType" />
+    <!-- Normal状态 -->
+    <xs:element name="Normal" type="stateType" />
+    <!-- Pressed状态 -->
+    <xs:element name="Pressed" type="stateType" />
+    <!-- NormalState状态 -->
+    <xs:element name="NormalState" type="stateType" />
+    <!-- PressedState状态 -->
+    <xs:element name="PressedState" type="stateType" />
+    <!-- ReachedState状态 -->
+    <xs:element name="ReachedState" type="stateType" />
+    <!-- 滑动组件 -->
+    <xs:element name="Slider">
+        <xs:complexType>
+            <xs:choice maxOccurs="unbounded" minOccurs="0">
+                <xs:element ref="StartPoint" />
+                <xs:element ref="EndPoint" />
+            </xs:choice>
+            <xs:attributeGroup ref="sliderAttrs" />
+        </xs:complexType>
+    </xs:element>
+    <!-- StartPoint -->
+    <xs:element name="StartPoint" type="pointType" />
+    <!-- EndPoint -->
+    <xs:element name="EndPoint" type="pointType" />
+    <!-- 滑动组件中的标签，用于限制滑块的滑动距离 -->
+    <xs:element name="Path">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="0" ref="Position" />
+            </xs:sequence>
+            <xs:attribute name="x" type="expression" />
+            <xs:attribute name="y" type="expression" />
+        </xs:complexType>
+    </xs:element>
+    <!-- 滑动的点 -->
+    <xs:element name="Position">
+        <xs:complexType>
+            <xs:attribute name="x" type="expression" />
+            <xs:attribute name="y" type="expression" />
+        </xs:complexType>
+    </xs:element>
+    <!-- Intent -->
+    <xs:element name="Intent">
+        <xs:complexType>
+            <xs:attribute name="name" type="stringType" />
+            <xs:attribute name="selectIntent" type="stringType" />
+            <xs:attribute name="action" type="stringType" />
+            <xs:attribute name="uri" type="stringType" />
+            <xs:attribute name="type" type="stringType" />
+            <xs:attribute name="category" type="stringType" />
+            <xs:attribute name="package" type="stringType" />
+            <xs:attribute name="class" type="stringType" />
+        </xs:complexType>
+    </xs:element>
+    <!-- 解锁 -->
+    <xs:element name="Unlocker">
+        <xs:complexType>
+            <xs:choice maxOccurs="unbounded" minOccurs="0">
+                <xs:element ref="StartPoint" />
+                <xs:element ref="EndPoint" />
+            </xs:choice>
+            <xs:attributeGroup ref="sliderAttrs" />
+        </xs:complexType>
+    </xs:element>
+    <!-- 变量：用来保存某些数值，可用于控制其他元素的显示隐藏，也可以用于控制变量动画 -->
+    <xs:element name="Var">
+        <xs:complexType>
+            <xs:choice maxOccurs="unbounded" minOccurs="0">
+                <xs:element ref="VariableAnimation" />
+                <xs:element ref="Trigger" />
+                <xs:element ref="Triggers" />
+            </xs:choice>
+            <xs:attribute name="name" type="stringType" />
+            <xs:attribute name="index" type="stringType" />
+            <xs:attribute name="type" type="stringType" />
+            <xs:attribute name="threshold" type="numType" />
+            <xs:attribute name="size" type="stringType" />
+            <xs:attribute name="expression" type="stringType" />
+            <xs:attribute name="const" type="booleanType" />
+            <xs:attribute name="persist" type="booleanType" />
+            <xs:attribute name="values" type="stringType" />
+            <xs:attribute name="globalPersist" type="stringType" />
+        </xs:complexType>
+    </xs:element>
+    <!-- 变量数组元素 -->
+    <xs:element name="VarArray">
+        <xs:complexType>
+            <xs:choice maxOccurs="unbounded" minOccurs="0">
+                <xs:element ref="Vars" />
+                <xs:element ref="Items" />
+            </xs:choice>
+            <xs:attribute name="type" default="number" />
+        </xs:complexType>
+    </xs:element>
+    <!-- Vars -->
+    <xs:element name="Vars">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="0" ref="Var" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <!-- Items -->
+    <xs:element name="Items">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="0" ref="Item" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <!-- 元素数组 -->
+    <xs:element name="Array">
+        <xs:complexType>
+            <xs:choice maxOccurs="unbounded" minOccurs="0">
+                <xs:element ref="Image" />
+                <xs:element ref="Text" />
+            </xs:choice>
+            <xs:attribute name="x" type="expression" />
+            <xs:attribute name="y" type="expression" />
+            <xs:attribute name="count" type="expression" />
+            <xs:attribute name="indexName" type="stringType" />
+        </xs:complexType>
+    </xs:element>
+    <!-- VortexView -->
+    <xs:element name="VortexView">
+        <xs:complexType>
+            <xs:choice maxOccurs="unbounded" minOccurs="0">
+                <xs:group ref="animationGroup" />
+                <xs:element ref="Trigger" />
+                <xs:element ref="Triggers" />
+            </xs:choice>
+            <xs:attributeGroup ref="viewCom" />
+            <xs:attribute name="blur" type="numType" />
+            <xs:attribute name="src" type="stringType" />
+            <xs:attribute name="xfermode" type="stringType" />
+            <xs:attribute name="srcExp" type="expression" />
+            <xs:attribute name="controlMode" type="expression" />
+            <xs:attribute name="srcid" type="numType" />
+            <xs:attribute name="useVirtualScreen" type="booleanType" />
+            <xs:attribute name="meshx" default="100" type="numType" />
+            <xs:attribute name="meshy" default="100" type="numType" />
+            <xs:attribute name="speedOfDistance" default="100" type="numType" />
+            <xs:attribute name="delayTime" default="100" type="numType" />
+            <xs:attribute name="speedOfAngel" default="100" type="numType" />
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="RotateView" substitutionGroup="VortexView" />
+    <!-- 蒙板控件，需要与图片元素一起使用 -->
+    <xs:element name="Mask">
+        <xs:complexType>
+            <xs:attributeGroup ref="viewCom" />
+            <xs:attribute name="src" type="stringType" />
+            <xs:attribute name="hybridMode" type="stringType" />
+            <xs:attribute name="absolute" type="stringType" />
+        </xs:complexType>
+    </xs:element>
+    <!-- 笔刷功能类，与Image组合使用,可实现刮刮乐、搽玻璃等效果 -->
+    <xs:element name="Paint">
+        <xs:complexType>
+            <xs:attribute name="weight" type="expression" />
+            <xs:attribute name="clear_percent" type="expression" />
+            <xs:attribute name="color" type="colorType" />
+        </xs:complexType>
+    </xs:element>
+    <!-- 位移动画 -->
+    <xs:element name="PositionAnimation">
+        <xs:complexType>
+            <xs:choice maxOccurs="unbounded" minOccurs="0">
+                <xs:element name="Position">
+                    <xs:complexType>
+                        <xs:attribute name="x" type="numType" />
+                        <xs:attribute name="y" type="numType" />
+                        <xs:attribute name="time" type="xs:long" />
+                        <xs:attribute name="easeType" type="easeAttr" />
+                        <xs:attribute name="varSpeedFlag" type="easeAttr" />
+                    </xs:complexType>
+                </xs:element>
+            </xs:choice>
+            <xs:attribute name="repeat" type="numType" />
+            <xs:attribute name="delay" type="numType" />
+        </xs:complexType>
+    </xs:element>
+    <!-- 透明度动画 -->
+    <xs:element name="AlphaAnimation">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Alpha" maxOccurs="unbounded" minOccurs="0">
+                    <xs:complexType>
+                        <xs:attribute name="a" type="numType" />
+                        <xs:attribute name="time" type="xs:long" />
+                        <xs:attribute name="easeType" type="easeAttr" />
+                        <xs:attribute name="varSpeedFlag" type="easeAttr" />
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="delay" type="numType" />
+            <xs:attribute name="repeat" type="numType" />
+        </xs:complexType>
+    </xs:element>
+    <!-- 缩放动画 -->
+    <xs:element name="SizeAnimation">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Size" maxOccurs="unbounded" minOccurs="0">
+                    <xs:complexType>
+                        <xs:attribute name="w" type="numType" />
+                        <xs:attribute name="h" type="numType" />
+                        <xs:attribute name="time" type="xs:long" />
+                        <xs:attribute name="easeType" type="easeAttr" />
+                        <xs:attribute name="varSpeedFlag" type="easeAttr" />
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="delay" type="numType" />
+            <xs:attribute name="repeat" type="numType" />
+        </xs:complexType>
+    </xs:element>
+    <!-- 旋转动画 -->
+    <xs:element name="RotationAnimation">
+        <xs:complexType>
+            <xs:choice maxOccurs="unbounded" minOccurs="0">
+                <xs:element name="Rotation" type="rotationType" />
+                <xs:element name="RotationX" type="rotationType" />
+                <xs:element name="RotationY" type="rotationType" />
+            </xs:choice>
+            <xs:attribute name="delay" type="numType" />
+            <xs:attribute name="repeat" type="numType" />
+            <xs:attribute name="angle" type="numType" />
+            <xs:attribute name="time" type="xs:long" />
+            <xs:attribute name="easeType" type="easeAttr" />
+            <xs:attribute name="varSpeedFlag" type="easeAttr" />
+        </xs:complexType>
+    </xs:element>
+    <!-- 帧动画 -->
+    <xs:element name="SourcesAnimation">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Source" maxOccurs="unbounded" minOccurs="0">
+                    <xs:complexType>
+                        <xs:attribute name="x" type="numType" />
+                        <xs:attribute name="y" type="numType" />
+                        <xs:attribute name="src" type="stringType" use="required" />
+                        <xs:attribute name="time" type="xs:long" />
+                        <xs:attribute name="easeType" type="easeAttr" />
+                        <xs:attribute name="varSpeedFlag" type="easeAttr" />
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="delay" type="numType" />
+            <xs:attribute name="repeat" type="numType" />
+        </xs:complexType>
+    </xs:element>
+    <!-- 变量动画:基础命令，让一个变量在规定时间内变化动画 -->
+    <xs:element name="VariableAnimation">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="0" ref="AniFrame" />
+            </xs:sequence>
+            <xs:attribute name="delay" type="numType" />
+            <xs:attribute name="repeat" type="numType" />
+            <xs:attribute name="easeType" type="easeAttr" />
+            <xs:attribute name="varSpeedFlag" type="easeAttr" />
+        </xs:complexType>
+    </xs:element>
+    <!-- AniFrame -->
+    <xs:element name="AniFrame">
+        <xs:complexType>
+            <xs:attribute name="time" type="expression" />
+            <xs:attribute name="value" type="expression" />
+            <xs:attribute name="easeType" type="easeAttr" />
+            <xs:attribute name="varSpeedFlag" type="easeAttr" />
+        </xs:complexType>
+    </xs:element>
+    <!-- 传感器 -->
+    <xs:element name="VariableBinders">
+        <xs:complexType>
+            <xs:choice maxOccurs="unbounded" minOccurs="0">
+                <xs:element ref="ContentProviderBinder" />
+                <xs:element ref="SensorBinder" />
+            </xs:choice>
+        </xs:complexType>
+    </xs:element>
+    <!-- 数据查询组件 -->
+    <xs:element name="ContentProviderBinder">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="0" ref="Variable" />
+            </xs:sequence>
+            <xs:attribute name="uri" type="stringType" />
+            <xs:attribute name="uriFormat" type="stringType" />
+            <xs:attribute name="uriParas" type="stringType" />
+            <xs:attribute name="columns" type="stringType" />
+            <xs:attribute name="where" type="stringType" />
+            <xs:attribute name="args" type="stringType" />
+            <xs:attribute name="order" type="stringType" />
+            <xs:attribute name="countName" type="stringType" />
+            <xs:anyAttribute processContents="lax" />
+        </xs:complexType>
+    </xs:element>
+    <!-- 传感器数据绑定组件 -->
+    <xs:element name="SensorBinder">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="0" ref="Variable" />
+            </xs:sequence>
+            <xs:attribute name="type" type="stringType" />
+        </xs:complexType>
+    </xs:element>
+    <!--Variable -->
+    <xs:element name="Variable">
+        <xs:complexType>
+            <xs:attribute name="name" type="stringType" />
+            <xs:attribute name="column" type="stringType" />
+            <xs:anyAttribute processContents="lax" />
+        </xs:complexType>
+    </xs:element>
+    <!-- 高级动态帧率 -->
+    <xs:element name="VariableFramerate">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="0" ref="VariablePoint" />
+            </xs:sequence>
+            <xs:attribute name="visibility" type="expression" />
+        </xs:complexType>
+    </xs:element>
+    <!-- The type Control point -->
+    <xs:element name="VariablePoint">
+        <xs:complexType>
+            <xs:attribute name="time" type="stringType" />
+            <xs:attribute name="frameRate" type="stringType" />
+        </xs:complexType>
+    </xs:element>
+    <!-- 跟手拖尾粒子 -->
+    <xs:element name="ParticleView">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="0" ref="PathData" />
+            </xs:sequence>
+            <xs:attribute name="w" type="expression" />
+            <xs:attribute name="h" type="expression" />
+            <xs:attribute name="count" type="numType" />
+            <xs:attribute name="move_radius" type="expression" />
+            <xs:attribute name="speek_sec" type="expression" />
+            <xs:attribute name="reduce_size" type="numType" />
+            <xs:attribute name="set_path" type="expression" />
+            <xs:attribute name="src" type="stringType" />
+        </xs:complexType>
+    </xs:element>
+    <!-- 路径 -->
+    <xs:element name="PathData">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="0" ref="Range" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <!-- Range包含一个小方形的坐标数据 -->
+    <xs:element name="Range">
+        <xs:complexType>
+            <xs:attribute name="rect" type="stringType" />
+        </xs:complexType>
+    </xs:element>
+    <!-- 水波纹 -->
+    <xs:element name="WaterWallpaper">
+        <xs:complexType>
+            <xs:group maxOccurs="unbounded" minOccurs="0" ref="animationGroup" />
+            <xs:attributeGroup ref="viewCom" />
+            <xs:attribute name="blur" type="numType" />
+            <xs:attribute name="src" type="stringType" />
+            <xs:attribute name="xfermode" type="stringType" />
+            <xs:attribute name="srcExp" type="expression" />
+            <xs:attribute name="srcid" type="numType" />
+            <xs:attribute name="useVirtualScreen" type="booleanType" />
+            <xs:attribute name="color" type="expression" />
+            <xs:attribute name="xmesh" type="expression" />
+            <xs:attribute name="ymesh" type="expression" />
+            <xs:attribute name="torsion" type="stringType" />
+        </xs:complexType>
+    </xs:element>
+    <!-- 网格化功能 -->
+    <xs:element name="MeshImage">
+        <xs:complexType>
+            <xs:choice maxOccurs="unbounded" minOccurs="0">
+                <xs:element ref="Translation" />
+                <xs:element ref="Alpha" />
+                <xs:element ref="Scale" />
+                <xs:element ref="Rotate" />
+                <xs:element ref="SinMotion" />
+            </xs:choice>
+            <xs:attributeGroup ref="viewCom" />
+            <xs:attribute name="mesh" type="stringType" />
+            <xs:attribute name="src" type="stringType" />
+            <xs:attribute name="center_point" type="expression" />
+            <xs:attribute name="sensor" type="expression" />
+        </xs:complexType>
+    </xs:element>
+    <!-- 位移 -->
+    <xs:element name="Translation">
+        <xs:complexType>
+            <xs:attribute name="duration" type="expression" />
+            <xs:attribute name="repeat" type="expression" />
+            <xs:attribute name="delay" type="expression" />
+            <xs:attribute name="factor" type="expression" />
+            <xs:attribute name="values" type="stringType" />
+            <xs:attribute name="max_distance_x" type="expression" />
+            <xs:attribute name="max_distance_y" type="expression" />
+            <xs:attribute name="no_move_distance_x" type="expression" />
+            <xs:attribute name="no_move_distance_y" type="expression" />
+        </xs:complexType>
+    </xs:element>
+    <!-- 透明度 -->
+    <xs:element name="Alpha">
+        <xs:complexType>
+            <xs:attribute name="duration" type="expression" />
+            <xs:attribute name="repeat" type="expression" />
+            <xs:attribute name="delay" type="expression" />
+            <xs:attribute name="values" type="stringType" />
+        </xs:complexType>
+    </xs:element>
+    <!-- 缩放 -->
+    <xs:element name="Scale">
+        <xs:complexType>
+            <xs:attribute name="duration" type="expression" />
+            <xs:attribute name="repeat" type="expression" />
+            <xs:attribute name="delay" type="expression" />
+            <xs:attribute name="values" type="stringType" />
+            <xs:attribute name="no_move_distance_x" type="expression" />
+            <xs:attribute name="no_move_distance_y" type="expression" />
+        </xs:complexType>
+    </xs:element>
+    <!-- 旋转 -->
+    <xs:element name="Rotate">
+        <xs:complexType>
+            <xs:attribute name="duration" type="expression" />
+            <xs:attribute name="repeat" type="expression" />
+            <xs:attribute name="delay" type="expression" />
+            <xs:attribute name="values" type="stringType" />
+            <xs:attribute name="no_move_distance_x" type="expression" />
+            <xs:attribute name="no_move_distance_y" type="expression" />
+        </xs:complexType>
+    </xs:element>
+    <!-- 水波荡漾 -->
+    <xs:element name="SinMotion">
+        <xs:complexType>
+            <xs:attribute name="a" type="expression" />
+            <xs:attribute name="factor_k" type="expression" />
+            <xs:attribute name="no_move_distance_x" type="expression" />
+            <xs:attribute name="no_move_distance_y" type="expression" />
+        </xs:complexType>
+    </xs:element>
+    <!-- 跑马灯 -->
+    <xs:element name="Marquee">
+        <xs:complexType>
+            <xs:attributeGroup ref="viewCom" />
+            <xs:attribute name="state" type="expression" />
+            <xs:attribute name="showTime" type="expression" />
+            <xs:attribute name="deltaAngle" type="expression" />
+            <xs:attribute name="color" type="colorType" />
+            <xs:attribute name="marqueeColor" type="colorType" />
+            <xs:attribute name="marqueePos" type="expression" />
+            <xs:attribute name="weight" type="expression" />
+        </xs:complexType>
+    </xs:element>
+    <!-- 翻书页 -->
+    <xs:element name="FlipBook">
+        <xs:complexType>
+            <xs:group maxOccurs="unbounded" minOccurs="0" ref="animationGroup" />
+            <xs:attribute name="x" type="expression" />
+            <xs:attribute name="y" type="expression" />
+            <xs:attribute name="color" type="colorType" />
+            <xs:attribute name="src" type="stringType" />
+            <xs:attribute name="bgsrc" type="stringType" />
+            <xs:attribute name="useVirtualScreen" type="booleanType" />
+            <xs:attribute name="srcExp" type="stringType" />
+        </xs:complexType>
+    </xs:element>
+    <!-- 情景动效 -->
+    <xs:element name="Situations">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="0" ref="situation" />
+            </xs:sequence>
+            <xs:attributeGroup ref="viewCom" />
+            <xs:attribute name="vars" type="stringType" />
+            <xs:attribute name="affect" type="stringType" />
+            <xs:attribute name="delay" type="stringType" />
+            <xs:attribute name="restrict" type="stringType" />
+            <xs:attribute name="sync" type="expression" />
+        </xs:complexType>
+    </xs:element>
+    <!-- 单个情景 -->
+    <xs:element name="situation">
+        <xs:complexType>
+            <xs:choice maxOccurs="unbounded" minOccurs="0">
+                <xs:element ref="Image" />
+                <xs:element ref="VirtualScreen" />
+            </xs:choice>
+            <xs:attribute name="name" type="stringType" />
+            <xs:attribute name="start" type="stringType" />
+            <xs:attribute name="end" type="stringType" />
+            <xs:attribute name="visibility_situation" type="expression" />
+        </xs:complexType>
+    </xs:element>
+    <!-- 上下推折叠效果，左右推窗帘效果 -->
+    <xs:element name="Fold">
+        <xs:complexType>
+            <xs:attributeGroup ref="viewCom" />
+            <xs:attribute name="src" type="stringType" />
+            <xs:attribute name="foldNum" default="2" type="numType" />
+            <xs:attribute name="coversrc" type="stringType" />
+            <xs:attribute name="slidingAppear" type="booleanType" />
+            <xs:attribute name="srcid" type="expression" />
+            <xs:attribute name="useVirtualScreen" default="false" type="booleanType" />
+            <xs:attribute name="srcExp" type="expression" />
+        </xs:complexType>
+    </xs:element>
+    <!-- 粒子散落 -->
+    <xs:element name="ParticleScatter">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="0" ref="Item" />
+            </xs:sequence>
+            <xs:attributeGroup ref="viewCom" />
+            <xs:attribute name="duration" default="1000" type="expression" />
+            <xs:attribute name="style" default="1" type="expression" />
+            <xs:attribute name="shaketime" default="150" type="expression" />
+            <xs:attribute name="path" type="stringType" />
+            <xs:attribute name="reverse" type="booleanType" />
+            <xs:attribute name="unlock" type="booleanType" />
+            <xs:attribute name="src" type="stringType" />
+            <xs:attribute name="useVirtualScreen" default="false" type="booleanType" />
+            <xs:attribute name="shape" default="0" type="expression" />
+            <xs:attribute name="radius" default="2" type="expression" />
+            <xs:attribute name="start" type="expression" />
+            <xs:attribute name="rect" type="expression" />
+            <xs:attribute name="controlMode" type="expression" />
+        </xs:complexType>
+    </xs:element>
+    <!-- 路径解析 -->
+    <xs:element name="PathUtil">
+        <xs:complexType>
+            <xs:attribute name="name" type="stringType" />
+            <xs:attribute name="path" type="stringType" />
+        </xs:complexType>
+    </xs:element>
+    <!-- 路径动画 -->
+    <xs:element name="PathRun">
+        <xs:complexType>
+            <xs:attributeGroup ref="viewCom" />
+            <xs:attribute name="color" type="colorType" />
+            <xs:attribute name="highlightlen" default="0" type="expression" />
+            <xs:attribute name="weight" default="5" type="expression" />
+            <xs:attribute name="speed" default="20" type="expression" />
+            <xs:attribute name="loop" type="booleanType" />
+            <xs:attribute name="fillflag" type="booleanType" />
+            <xs:attribute name="loopcount" default="0" type="expression" />
+            <xs:attribute name="async" type="booleanType" />
+            <xs:attribute name="src" type="stringType" />
+            <xs:attribute name="imageWidth" default="40" type="expression" />
+            <xs:attribute name="imageHeight" default="40" type="expression" />
+            <xs:attribute name="shake" type="booleanType" />
+            <xs:attribute name="imageTransX" default="0" type="expression" />
+            <xs:attribute name="imageTransY" default="0" type="expression" />
+            <xs:attribute name="imageTransformStyle" default="0" type="expression" />
+        </xs:complexType>
+    </xs:element>
+    <!--  常用形状渲染功能 -->
+    <xs:element name="Graph">
+        <xs:complexType>
+            <xs:attribute name="x" type="expression" />
+            <xs:attribute name="y" type="expression" />
+            <xs:attribute name="radius" type="expression" />
+            <xs:attribute name="left" type="expression" />
+            <xs:attribute name="top" type="expression" />
+            <xs:attribute name="right" type="expression" />
+            <xs:attribute name="bottom" type="expression" />
+            <xs:attribute name="pathname" type="stringType" />
+            <xs:attribute name="shape" type="stringType" />
+            <xs:attribute name="wave" type="stringType" />
+        </xs:complexType>
+    </xs:element>
+    <!--  绽放功能描述 -->
+    <xs:element name="Bloom">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="0" ref="Entry" />
+            </xs:sequence>
+            <xs:attributeGroup ref="viewCom" />
+            <xs:attribute name="duration" default="1000" type="expression" />
+            <xs:attribute name="style" default="0" type="expression" />
+            <xs:attribute name="shaketime" default="150" type="expression" />
+            <xs:attribute name="radius" default="2" type="expression" />
+            <xs:attribute name="scale" type="numType" />
+        </xs:complexType>
+    </xs:element>
+    <!--  全景动效 -->
+    <xs:element name="VR">
+        <xs:complexType>
+            <xs:attribute name="src" type="stringType" />
+            <xs:attribute name="srcid" default="0" type="expression" />
+            <xs:attribute name="imageType" type="stringType" />
+            <xs:attribute name="touchType" default="0" type="expression" />
+        </xs:complexType>
+    </xs:element>
+    <!-- Entry -->
+    <xs:element name="Entry">
+        <xs:complexType>
+            <xs:attribute name="number" type="numType" />
+            <xs:attribute name="width" default="4" type="expression" />
+            <xs:attribute name="height" default="4" type="expression" />
+            <xs:attribute name="src" type="stringType" />
+        </xs:complexType>
+    </xs:element>
+    <!--  图片粒子 -->
+    <xs:element name="ImageParticleView">
+        <xs:complexType>
+            <xs:attributeGroup ref="viewCom" />
+            <xs:attribute name="src" type="stringType" />
+            <xs:attribute name="rectWidth" default="30" type="numType" />
+            <xs:attribute name="maxRadius" default="30" type="numType" />
+            <xs:attribute name="rgbThreshold" default="210" type="numType" />
+            <xs:attribute name="friction" default="0.7" type="numType" />
+            <xs:attribute name="controlArea" default="150" type="numType" />
+            <xs:attribute name="actionType" type="stringType" />
+            <xs:attribute name="colorType" type="stringType" />
+        </xs:complexType>
+    </xs:element>
+    <!--  图片滤镜 -->
+    <xs:element name="ImageFilterView">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="filter" maxOccurs="unbounded" minOccurs="0" />
+            </xs:sequence>
+            <xs:attribute name="src" type="stringType" />
+            <xs:attribute name="x" default="0" type="numType" />
+            <xs:attribute name="y" default="0" type="numType" />
+            <xs:attribute name="w" default="0" type="numType" />
+            <xs:attribute name="h" default="0" type="numType" />
+            <xs:attribute name="visibility" default="1" type="numType" />
+        </xs:complexType>
+    </xs:element>
+    <!-- filter -->
+    <xs:element name="filter">
+        <xs:complexType>
+            <xs:attribute name="x" default="0" type="numType" />
+            <xs:attribute name="y" default="0" type="numType" />
+            <xs:attribute name="width" type="numType" />
+            <xs:attribute name="height" type="numType" />
+            <xs:attribute name="filterType" type="stringType" />
+            <xs:attribute name="args" type="stringType" />
+        </xs:complexType>
+    </xs:element>
+
+    <!--  下落动效 -->
+    <xs:element name="DropPhysicalView">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="ItemGroup" maxOccurs="unbounded" minOccurs="0" />
+            </xs:sequence>
+            <xs:attributeGroup ref="viewCom" />
+            <xs:attribute name="gravityX" type="expression" />
+            <xs:attribute name="gravityY" type="expression" />
+            <xs:attribute name="airDensity" default="12.93" type="expression" />
+        </xs:complexType>
+    </xs:element>
+    <!-- ItemGroup -->
+    <xs:element name="ItemGroup">
+        <xs:complexType>
+            <xs:choice maxOccurs="unbounded" minOccurs="0">
+                <xs:element ref="Item" />
+                <xs:element name="Alpha">
+                    <xs:complexType>
+                        <xs:attribute name="value" type="expression" />
+                        <xs:attribute name="x" type="expression" />
+                        <xs:attribute name="y" type="expression" />
+                        <xs:attribute name="width" type="expression" />
+                        <xs:attribute name="height" type="expression" />
+                    </xs:complexType>
+                </xs:element>
+            </xs:choice>
+            <xs:attribute name="x" type="expression" />
+            <xs:attribute name="y" type="expression" />
+            <xs:attribute name="width" type="expression" />
+            <xs:attribute name="height" type="expression" />
+        </xs:complexType>
+    </xs:element>
+    <!--外部View容器窗口组件 -->
+    <xs:element name="Frame">
+        <xs:complexType>
+            <xs:group maxOccurs="unbounded" minOccurs="0" ref="animationGroup" />
+            <xs:attributeGroup ref="viewCom" />
+            <xs:attribute name="bg" type="stringType" />
+            <xs:attribute name="resource" type="stringType" />
+            <xs:attribute name="needscale" type="numType" />
+            <xs:attribute name="adurl" type="stringType" />
+            <xs:attribute name="adresourcename" type="stringType" />
+            <xs:attribute name="onlylocal" type="booleanType" />
+            <xs:attribute name="showadcount" type="numType" />
+        </xs:complexType>
+    </xs:element>
+    <!--扩展的滑块组件解析 -->
+    <xs:element name="SliderEx">
+        <xs:complexType>
+            <xs:choice maxOccurs="unbounded" minOccurs="0">
+                <xs:element ref="StartPoint" />
+                <xs:element ref="EndPoint" />
+            </xs:choice>
+            <xs:attributeGroup ref="sliderAttrs" />
+        </xs:complexType>
+    </xs:element>
+    <!--Triggers -->
+    <xs:element name="Triggers">
+        <xs:complexType>
+            <xs:choice maxOccurs="unbounded" minOccurs="0">
+                <xs:element ref="Trigger" />
+                <xs:element ref="Normal" />
+                <xs:element ref="Pressed" />
+            </xs:choice>
+        </xs:complexType>
+    </xs:element>
+    <!-- 命令的事件触发器 -->
+    <xs:element name="Trigger">
+        <xs:complexType>
+            <xs:choice maxOccurs="unbounded" minOccurs="0">
+                <xs:element ref="Command" />
+                <xs:element ref="VariableCommand" />
+                <xs:element ref="SoundCommand" />
+                <xs:element ref="ExternCommand" />
+                <xs:element ref="IntentCommand" />
+                <xs:element ref="VideoCommand" />
+                <xs:element ref="CycleCommand" />
+                <xs:element ref="GroupCommands" />
+                <xs:element ref="ParticleCommand" />
+                <xs:element ref="VibrateCommand" />
+                <xs:element ref="CollBodyCommand" />
+                <xs:element ref="RefreshHealthyCommand" />
+                <xs:element ref="ProgressCommand" />
+                <xs:element ref="MediaCommand" />
+                <xs:element ref="RefreshWeatherCommand" />
+                <xs:element ref="Fluid3dCommand" />
+                <xs:element ref="EditCommand" />
+            </xs:choice>
+            <xs:attribute name="name" type="stringType" />
+            <xs:attribute name="action" type="stringType" />
+            <xs:attribute name="target" type="stringType" />
+            <xs:attribute name="property" type="stringType" />
+            <xs:attribute name="adid" type="stringType" />
+            <xs:attribute name="value" type="stringType" />
+            <xs:attribute name="isDisableUnlock" type="xs:boolean" />
+            <xs:attribute name="cancelEngineUnlock" type="xs:boolean" />
+        </xs:complexType>
+    </xs:element>
+    <!-- 基础命令 -->
+    <xs:element name="Command">
+        <xs:complexType>
+            <xs:attribute name="target" type="stringType" />
+            <xs:attribute name="value" type="stringType" />
+            <xs:attribute name="adid" type="stringType" />
+            <xs:attributeGroup ref="commandAttrs" />
+        </xs:complexType>
+    </xs:element>
+    <!-- 流体数量增减命令 -->
+    <xs:element name="ParticleCommand">
+        <xs:complexType>
+            <xs:choice>
+                <xs:element ref="CircleShape" />
+                <xs:element ref="PolygonShape" />
+            </xs:choice>
+            <xs:attribute name="adid" type="stringType" />
+            <xs:attribute name="type" type="stringType" use="required" />
+            <xs:attribute name="deleteNum" type="expression" />
+            <xs:attribute name="color" type="colorType" />
+            <xs:attributeGroup ref="commandAttrs" />
+        </xs:complexType>
+    </xs:element>
+    <!-- 声音命令 -->
+    <xs:element name="SoundCommand">
+        <xs:complexType>
+            <xs:attribute name="sound" type="stringType" />
+            <xs:attribute name="volume" type="numType" />
+            <xs:attribute name="loop" type="expression" />
+            <xs:attribute name="keepCur" type="booleanType" />
+            <xs:attribute name="delay" type="expression" />
+            <xs:attribute name="delayCondition" type="expression" />
+            <xs:attribute name="condition" type="expression" />
+            <xs:attribute name="adid" type="stringType" />
+        </xs:complexType>
+    </xs:element>
+    <!-- 变量命令。用来控制变量（Var）的值。包括name和expression两个特殊属性 -->
+    <xs:element name="VariableCommand">
+        <xs:complexType>
+            <xs:attribute name="name" type="stringType" />
+            <xs:attribute name="expression" type="stringType" />
+            <xs:attribute name="type" type="stringType" />
+            <xs:attribute name="index" type="expression" />
+            <xs:attributeGroup ref="commandAttrs" />
+            <xs:attribute name="adid" type="stringType" />
+            <xs:attribute name="persist" type="stringType" />
+        </xs:complexType>
+    </xs:element>
+    <!-- 通用命令。是用来接收外部命令的命令，典型的用法：在锁屏中，通常用来接收开屏/关屏命令，从而执行一些命令；在桌面插件中，用来检测切屏从而执行命令 -->
+    <xs:element name="ExternalCommands">
+        <xs:complexType>
+            <xs:choice maxOccurs="unbounded" minOccurs="0">
+                <xs:element maxOccurs="unbounded" minOccurs="0" ref="Trigger" />
+                <xs:element maxOccurs="unbounded" minOccurs="0" ref="Triggers" />
+            </xs:choice>
+        </xs:complexType>
+    </xs:element>
+    <!-- 通用命令。用来向外部程序发送命令。目前可以使用的一种命令是解锁命令(仅在锁屏中有效) -->
+    <xs:element name="ExternCommand">
+        <xs:complexType>
+            <xs:attribute name="command" type="stringType" />
+            <xs:attributeGroup ref="commandAttrs" />
+            <xs:attribute name="adid" type="stringType" />
+        </xs:complexType>
+    </xs:element>
+    <!-- 通过IntentCommand命令，可以跳转打开其他应用程序App；注意：要记得加上解锁命令，否则只是在后台打开了，还要解锁才能看到 -->
+    <xs:element name="IntentCommand">
+        <xs:complexType>
+            <xs:attribute name="name" type="stringType" />
+            <xs:attribute name="selectIntent" type="stringType" />
+            <xs:attribute name="action" type="stringType" />
+            <xs:attribute name="uri" type="stringType" />
+            <xs:attribute name="type" type="stringType" />
+            <xs:attribute name="category" type="stringType" />
+            <xs:attribute name="package" type="stringType" />
+            <xs:attribute name="class" type="stringType" />
+            <xs:attribute name="adid" type="stringType" />
+            <xs:attribute name="deeplinks" type="stringType" />
+            <xs:attribute name="hyperlink" type="stringType" />
+            <xs:attribute name="isDesk" type="stringType" />
+            <xs:attribute name="appID" type="stringType" />
+            <xs:attribute name="sourceID" type="stringType" />
+            <xs:attribute name="coOperWith" type="stringType" />
+            <xs:attribute name="operType" type="stringType" />
+            <xs:attribute name="market" type="stringType" />
+            <xs:attributeGroup ref="commandAttrs" />
+        </xs:complexType>
+    </xs:element>
+    <!-- 视频命令，用来控制视频播放暂停和音量 -->
+    <xs:element name="VideoCommand">
+        <xs:complexType>
+            <xs:attribute name="name" type="stringType" />
+            <xs:attribute name="src" type="stringType" />
+            <xs:attribute name="adid" type="stringType" />
+            <xs:attribute name="play" type="booleanType" />
+            <xs:attribute name="sound" default="-1" type="expression" />
+            <xs:attribute name="keepCur" default="-1" type="expression" />
+            <xs:attribute name="fold_expand_start" type="numType" />
+            <xs:attribute name="fold_expand_end" type="numType" />
+            <xs:attribute name="fold_collapse_big_start" type="numType" />
+            <xs:attribute name="fold_collapse_big_end" type="numType" />
+        </xs:complexType>
+    </xs:element>
+    <!-- 周期命令CycleCommand主要和元素数组Array配合使用，可以提升编码效率 -->
+    <xs:element name="CycleCommand">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="0" ref="VariableCommand" />
+            </xs:sequence>
+            <xs:attribute name="indexFlag" type="stringType" />
+            <xs:attribute name="adid" type="stringType" />
+            <xs:attribute name="begin" type="numType" />
+            <xs:attribute name="end" type="numType" />
+            <xs:attribute name="frequency" type="numType" />
+            <xs:attribute name="cycleCondition" type="expression" />
+        </xs:complexType>
+    </xs:element>
+    <!-- 命令组 -->
+    <xs:element name="GroupCommands">
+        <xs:complexType>
+            <xs:attribute name="target" type="stringType" />
+            <xs:attribute name="method" default="perform" type="stringType" />
+            <xs:attribute name="paramTypes" default="String" type="stringType" />
+            <xs:attribute name="params" type="stringType" />
+            <xs:attribute name="adid" type="stringType" />
+        </xs:complexType>
+    </xs:element>
+    <!-- 虚拟屏幕元素组件 -->
+    <xs:group name="virtualGroup">
+        <xs:choice>
+            <xs:element ref="Image" />
+            <xs:element ref="Rectangle" />
+            <xs:element ref="Circle" />
+            <xs:element ref="Ellipse" />
+            <xs:element ref="Line" />
+            <xs:element ref="Arc" />
+            <xs:element ref="Frame" />
+            <xs:element ref="Text" />
+            <xs:element ref="Time" />
+            <xs:element ref="DateTime" />
+            <xs:element ref="ImageNumber" />
+            <xs:element ref="ImageSeries" />
+            <xs:element ref="Wallpaper" />
+            <xs:element ref="Group" />
+            <xs:element ref="DropView" />
+        </xs:choice>
+    </xs:group>
+    <!-- 组元素组件 -->
+    <xs:group name="viewGroup">
+        <xs:choice>
+            <xs:element ref="Image" />
+            <xs:element ref="Rectangle" />
+            <xs:element ref="Circle" />
+            <xs:element ref="Ellipse" />
+            <xs:element ref="Line" />
+            <xs:element ref="Arc" />
+            <xs:element ref="Paint" />
+            <xs:element ref="Frame" />
+            <xs:element ref="SourceImage" />
+            <xs:element ref="Text" />
+            <xs:element ref="Time" />
+            <xs:element ref="DateTime" />
+            <xs:element ref="ImageNumber" />
+            <xs:element ref="ImageSeries" />
+            <xs:element ref="Wallpaper" />
+            <xs:element ref="Slider" />
+            <xs:element ref="SliderEx" />
+            <xs:element ref="Unlocker" />
+            <xs:element ref="Button" />
+            <xs:element ref="Group" />
+            <xs:element ref="PositionAnimation" />
+            <xs:element ref="AlphaAnimation" />
+            <xs:element ref="RotationAnimation" />
+            <xs:element ref="Trigger" />
+            <xs:element ref="Triggers" />
+            <xs:element ref="DropPhysicalView" />
+            <xs:element ref="RotateView" />
+            <xs:element ref="Marquee" />
+            <xs:element ref="PathRun" />
+            <xs:element ref="Bloom" />
+            <xs:element ref="ImageParticleView" />
+            <xs:element ref="MeshImage" />
+            <xs:element ref="ParticleScatter" />
+            <xs:element ref="WaterWallpaper" />
+            <xs:element ref="LrcView" />
+            <xs:element ref="MediaIcon" />
+            <xs:element ref="MediaProgressbar" />
+            <xs:element ref="EditGroup" />
+            <xs:element ref="EditText" />
+        </xs:choice>
+    </xs:group>
+    <!-- 动画组 -->
+    <xs:group name="animationGroup">
+        <xs:choice>
+            <xs:element ref="VortexView" />
+            <xs:element ref="Mask" />
+            <xs:element ref="Paint" />
+            <xs:element ref="FillGradient" />
+            <xs:element ref="StrokeGradient" />
+            <xs:element ref="PositionAnimation" />
+            <xs:element ref="AlphaAnimation" />
+            <xs:element ref="SizeAnimation" />
+            <xs:element ref="RotationAnimation" />
+            <xs:element ref="SourcesAnimation" />
+        </xs:choice>
+    </xs:group>
+    <!-- 滑动组件共有属性 -->
+    <xs:attributeGroup name="sliderAttrs">
+        <xs:attribute name="name" type="stringType" />
+        <xs:attribute name="bounceInitSpeed" type="expression" />
+        <xs:attribute name="bounceAcceleration" type="expression" />
+        <xs:attribute name="visibility" type="expression" />
+        <xs:attribute name="always" type="expression" />
+        <xs:attribute name="keyPoint" type="stringType" />
+    </xs:attributeGroup>
+    <!-- 命令的共有属性 -->
+    <xs:attributeGroup name="commandAttrs">
+        <xs:attribute name="condition" type="expression" />
+        <xs:attribute name="delay" type="numType" />
+        <xs:attribute name="delayCondition" type="expression" />
+    </xs:attributeGroup>
+    <!-- 几何图形type  未定 -->
+    <xs:attributeGroup name="geometryGroup">
+        <xs:attributeGroup ref="viewCom" />
+        <xs:attribute name="strokeColor" type="colorType" />
+        <xs:attribute name="fillColor" type="colorType" />
+        <xs:attribute name="weight" type="expression" />
+        <xs:attribute name="cap" type="stringType" />
+        <xs:attribute name="dottedLine" type="stringType" />
+        <xs:attribute name="hybridMode" type="stringType" />
+    </xs:attributeGroup>
+    <!-- 通用属性 expression支持表达式，类型暂不确定；moveRect:string类型（eg:"255,222,111,111"） -->
+    <xs:attributeGroup name="viewCom">
+        <xs:attribute name="name" type="stringType" />
+        <xs:attribute name="_name" type="stringType" />
+        <xs:attribute name="align" type="stringType" />
+        <xs:attribute name="alignV" type="stringType" />
+        <xs:attribute name="x" default="0" type="expression" />
+        <xs:attribute name="y" default="0" type="expression" />
+        <xs:attribute name="w" default="0" type="expression" />
+        <xs:attribute name="h" default="0" type="expression" />
+        <xs:attribute name="width" default="0" type="expression" />
+        <xs:attribute name="height" default="0" type="expression" />
+        <xs:attribute name="pivotX" default="0" type="expression" />
+        <xs:attribute name="pivotY" default="0" type="expression" />
+        <xs:attribute name="centerX" default="0" type="expression" />
+        <xs:attribute name="centerY" default="0" type="expression" />
+        <xs:attribute name="rotation" default="0" type="expression" />
+        <xs:attribute name="rotationX" default="0" type="expression" />
+        <xs:attribute name="rotationY" default="0" type="expression" />
+        <xs:attribute name="angle" default="0" type="expression" />
+        <xs:attribute name="angleX" default="0" type="expression" />
+        <xs:attribute name="angleY" default="0" type="expression" />
+        <xs:attribute name="alpha" default="255" type="expression" />
+        <xs:attribute name="category" default="1" type="expression" />
+        <xs:attribute name="status" default="1" type="expression" />
+        <xs:attribute name="active" default="1" type="expression" />
+        <xs:attribute name="visibility" default="1" type="expression" />
+        <xs:attribute name="enableMove" default="0" type="expression" />
+        <xs:attribute name="moveRect" type="stringType" />
+        <xs:attribute name="pathname" type="stringType" />
+        <xs:attribute name="translateX" default="0" type="expression" />
+        <xs:attribute name="translateY" default="0" type="expression" />
+        <xs:attribute name="scaleX" default="1" type="expression" />
+        <xs:attribute name="scaleY" default="1" type="expression" />
+        <xs:attribute name="rotate" default="0" type="expression" />
+        <!-- <xs:anyAttribute processContents="lax" /> -->
+    </xs:attributeGroup>
+    <!-- pointType -->
+    <xs:complexType name="pointType">
+        <xs:choice maxOccurs="unbounded" minOccurs="0">
+            <xs:element ref="NormalState" />
+            <xs:element ref="PressedState" />
+            <xs:element ref="ReachedState" />
+            <xs:element ref="Path" />
+            <xs:element ref="Trigger" />
+            <xs:element ref="Triggers" />
+            <xs:element ref="Intent" />
+        </xs:choice>
+        <xs:attribute name="x" type="expression" />
+        <xs:attribute name="y" type="expression" />
+        <xs:attribute name="w" type="expression" />
+        <xs:attribute name="h" type="expression" />
+        <xs:attribute name="normalSound" type="stringType" />
+        <xs:attribute name="pressedSound" type="stringType" />
+        <xs:attribute name="reachedSound" type="stringType" />
+    </xs:complexType>
+    <!-- 控件状态type -->
+    <xs:complexType name="stateType">
+        <xs:choice maxOccurs="unbounded" minOccurs="0">
+            <xs:element ref="Image" />
+            <xs:element ref="Frame" />
+            <xs:element ref="SourceImage" />
+            <xs:element ref="Text" />
+            <xs:element ref="Time" />
+            <xs:element ref="DateTime" />
+            <xs:element ref="ImageNumber" />
+            <xs:element ref="ImageSeries" />
+            <xs:element ref="Group" />
+            <xs:element ref="Trigger" />
+            <xs:element ref="Triggers" />
+        </xs:choice>
+    </xs:complexType>
+    <!-- 旋转动画type -->
+    <xs:complexType name="rotationType">
+        <xs:attribute name="angle" type="stringType" />
+        <xs:attribute name="time" type="xs:long" />
+        <xs:attribute name="easeType" type="stringType" />
+    </xs:complexType>
+    <!--文本type -->
+    <xs:complexType name="textType">
+        <xs:choice maxOccurs="unbounded" minOccurs="0">
+            <xs:group ref="animationGroup" />
+            <xs:element ref="PathItem" />
+        </xs:choice>
+        <xs:attributeGroup ref="viewCom" />
+        <xs:attribute name="size" type="expression" />
+        <xs:attribute name="color" type="colorType" />
+        <xs:attribute name="bold" type="booleanType" />
+        <xs:attribute name="shadowColor" type="colorType" />
+        <xs:attribute name="shadowDx" type="numType" />
+        <xs:attribute name="shadowDy" type="numType" />
+        <xs:attribute name="Radius" type="numType" />
+        <xs:attribute name="marquee" type="booleanType" />
+        <xs:attribute name="showTime" type="expression" />
+        <xs:attribute name="showStyle" default="0" type="expression" />
+        <xs:attribute name="tileMode" type="stringType" />
+        <xs:attribute name="marqueeColor" type="colorType" />
+        <xs:attribute name="spaceTimes" default="1" type="numType" />
+        <xs:attribute name="spaceExtraAdd" default="0" type="numType" />
+        <xs:attribute name="canPath" type="booleanType" />
+        <xs:attribute name="run" type="expression" />
+        <xs:attribute name="speed" type="expression" />
+        <xs:attribute name="autoLineFeed" type="booleanType" />
+        <xs:attribute name="format" type="stringType" />
+        <xs:attribute name="paras" type="stringType" />
+        <xs:attribute name="text" type="stringType" />
+        <xs:attribute name="textExp" type="stringType" />
+        <xs:attribute name="textalign" type="stringType" />
+        <xs:attribute name="scrollDisplay" type="booleanType" />
+        <xs:attribute name="marqueeRepeatLimit" type="numType" />
+        <xs:attribute name="clickable" type="booleanType" />
+        <xs:attribute name="delayTime" default="3000" type="numType" />
+    </xs:complexType>
+    <!-- 图片type -->
+    <xs:complexType name="imageType">
+        <xs:group maxOccurs="unbounded" minOccurs="0" ref="animationGroup" />
+        <xs:attributeGroup ref="viewCom" />
+        <xs:attribute name="blur" type="numType" />
+        <xs:attribute name="src" type="stringType" />
+        <xs:attribute name="xfermode" type="stringType" />
+        <xs:attribute name="hybridMode" type="stringType" />
+        <xs:attribute name="adSrc" type="stringType" />
+        <xs:attribute name="srcExp" type="expression" />
+        <xs:attribute name="srcid" type="expression" />
+        <xs:attribute name="useVirtualScreen" type="booleanType" />
+        <xs:attribute name="loop" type="stringType" />
+        <xs:attribute name="save" type="numType" />
+        <xs:attribute name="scaleType" type="stringType" />
+        <xs:attribute name="isBackground" type="booleanType" />
+        <xs:attribute name="apngSequence" type="expression" />
+        <xs:attribute name="apngLoopCount" type="numType" />
+        <xs:attribute name="supportApng" type="stringType" />
+        <xs:attribute name="isRefresh" type="stringType" />
+        <xs:attribute name="longPressContinued" type="stringType" />
+        <xs:attribute name="isPlayingVar" type="stringType" />
+
+    </xs:complexType>
+    <!--按钮type -->
+    <xs:complexType name="buttonType">
+        <xs:choice maxOccurs="unbounded" minOccurs="0">
+            <xs:element ref="Triggers" />
+            <xs:element ref="Trigger" />
+            <xs:element ref="Normal" />
+            <xs:element ref="Pressed" />
+        </xs:choice>
+        <xs:attribute name="name" type="stringType" />
+        <xs:attribute name="x" type="expression" />
+        <xs:attribute name="y" type="expression" />
+        <xs:attribute name="w" type="expression" />
+        <xs:attribute name="h" type="expression" />
+        <xs:attribute name="interceptButtonTouch" type="expression" />
+        <xs:attribute name="visibility" type="expression" />
+        <xs:attribute name="longTouchTime" type="expression" />
+    </xs:complexType>
+    <!-- 函数类型 -->
+    <xs:simpleType name="easeAttr">
+        <xs:restriction base="stringType">
+            <xs:enumeration value="SineEaseIn" />
+            <xs:enumeration value="SineEaseOut" />
+            <xs:enumeration value="SineEaseInOut" />
+            <xs:enumeration value="QuadEaseIn" />
+            <xs:enumeration value="QuadEaseOut" />
+            <xs:enumeration value="QuadEaseInOut" />
+            <xs:enumeration value="CubicEaseIn" />
+            <xs:enumeration value="CubicEaseOut" />
+            <xs:enumeration value="CubicEaseInOut" />
+            <xs:enumeration value="QuartEaseIn" />
+            <xs:enumeration value="QuartEaseOut" />
+            <xs:enumeration value="QuartEaseInOut" />
+            <xs:enumeration value="QuintEaseIn" />
+            <xs:enumeration value="QuintEaseOut" />
+            <xs:enumeration value="QuintEaseInOut" />
+            <xs:enumeration value="ExpoEaseIn" />
+            <xs:enumeration value="ExpoEaseOut" />
+            <xs:enumeration value="ExpoEaseInOut" />
+            <xs:enumeration value="CircEaseIn" />
+            <xs:enumeration value="CircEaseOut" />
+            <xs:enumeration value="CircEaseInOut" />
+            <xs:enumeration value="BackEaseIn" />
+            <xs:enumeration value="BackEaseOut" />
+            <xs:enumeration value="BackEaseInOut" />
+            <xs:enumeration value="ElasticEaseIn" />
+            <xs:enumeration value="ElasticEaseOut" />
+            <xs:enumeration value="ElasticEaseInOut" />
+            <xs:enumeration value="BounceEaseIn" />
+            <xs:enumeration value="BounceEaseOut" />
+            <xs:enumeration value="BounceEaseInOut" />
+            <!--新版本中缓动函数改为变速函数 -->
+            <xs:enumeration value="SineFun_In" />
+            <xs:enumeration value="SineFun_Out" />
+            <xs:enumeration value="SineFun_InOut" />
+            <xs:enumeration value="QuadFun_In" />
+            <xs:enumeration value="QuadFun_Out" />
+            <xs:enumeration value="QuadFun_InOut" />
+            <xs:enumeration value="CubicFun_In" />
+            <xs:enumeration value="CubicFun_Out" />
+            <xs:enumeration value="CubicFun_InOut" />
+            <xs:enumeration value="QuartFun_In" />
+            <xs:enumeration value="QuartFun_Out" />
+            <xs:enumeration value="QuartFun_InOut" />
+            <xs:enumeration value="QuintFun_In" />
+            <xs:enumeration value="QuintFun_Out" />
+            <xs:enumeration value="QuintFun_InOut" />
+            <xs:enumeration value="ExpoFun_In" />
+            <xs:enumeration value="ExpoFun_Out" />
+            <xs:enumeration value="ExpoFun_InOut" />
+            <xs:enumeration value="CircFun_In" />
+            <xs:enumeration value="CircFun_Out" />
+            <xs:enumeration value="CircFun_InOut" />
+            <xs:enumeration value="BackFun_In" />
+            <xs:enumeration value="BackFun_Out" />
+            <xs:enumeration value="BackFun_InOut" />
+            <xs:enumeration value="ElasticFun_In" />
+            <xs:enumeration value="ElasticFun_Out" />
+            <xs:enumeration value="ElasticFun_InOut" />
+            <xs:enumeration value="BounceFun_In" />
+            <xs:enumeration value="BounceFun_Out" />
+            <xs:enumeration value="BounceFun_InOut" />
+        </xs:restriction>
+    </xs:simpleType>
+    <!-- 表达式 未定 -->
+    <xs:simpleType name="expression">
+        <xs:restriction base="stringType">
+            
+        </xs:restriction>
+    </xs:simpleType>
+    <!-- 字符串 -->
+    <xs:simpleType name="stringType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="([^>])+" />
+        </xs:restriction>
+    </xs:simpleType>
+    <!-- 颜色限定 未定 -->
+    <xs:simpleType name="colorType">
+        <xs:restriction base="stringType" />
+    </xs:simpleType>
+    <!-- 数字 -->
+    <xs:simpleType name="numType">
+        <xs:restriction base="stringType"></xs:restriction>
+    </xs:simpleType>
+    <!-- boolean:true或false -->
+    <xs:simpleType name="booleanType">
+        <xs:restriction base="stringType">
+            <xs:enumeration value="true" />
+            <xs:enumeration value="false" />
+        </xs:restriction>
+    </xs:simpleType>
+    <!-- 音乐控制器 -->
+    <xs:element name="MediaControl">
+        <xs:complexType>
+            <xs:attribute name="packageName" type="stringType" />
+        </xs:complexType>
+    </xs:element>
+    <!-- 歌词 -->
+    <xs:element name="LrcView">
+        <xs:complexType>
+            <xs:attributeGroup ref="viewCom" />
+            <xs:attribute name="color" type="colorType" />
+            <xs:attribute name="highColor" type="colorType" />
+            <xs:attribute name="size" type="stringType" />
+            <xs:attribute name="highSize" type="stringType" />
+            <xs:attribute name="dividerHeight" type="stringType" />
+            <xs:attribute name="lineNum" type="stringType" />
+            <xs:attribute name="maxLines" type="stringType" />
+        </xs:complexType>
+    </xs:element>
+    <!-- 专辑封面 -->
+    <xs:element name="MediaIcon" type="imageType" />
+    <!-- 音乐进度条 -->
+    <xs:element name="MediaProgressbar">
+        <xs:complexType>
+            <xs:attributeGroup ref="viewCom" />
+            <xs:attribute name="topColor" type="colorType" />
+            <xs:attribute name="bottomColor" type="colorType" />
+            <xs:attribute name="bgSrc" type="stringType" />
+            <xs:attribute name="iconSrc" type="stringType" />
+            <xs:attribute name="progressWidth" type="expression" />
+            <xs:attribute name="iconWidth" type="expression" />
+            <xs:attribute name="iconHeight" type="expression" />
+            <xs:attribute name="isRightAngle" type="stringType" />
+        </xs:complexType>
+    </xs:element>
+    <!-- 音乐控制命令 -->
+    <xs:element name="MediaCommand">
+        <xs:complexType>
+            <xs:attribute name="command" type="mediaCommandType" />
+            <xs:attribute name="voiceStep100" type="expression" />
+            <xs:attribute name="adid" type="stringType" />
+            <xs:attributeGroup ref="commandAttrs" />
+        </xs:complexType>
+    </xs:element>
+
+    <!-- 音乐控制命令类型 -->
+    <xs:simpleType name="mediaCommandType">
+        <xs:restriction base="stringType">
+            <xs:enumeration value="mediaPlay" />
+            <xs:enumeration value="mediaPause" />
+            <xs:enumeration value="mediaLike" />
+            <xs:enumeration value="mediaDislike" />
+            <xs:enumeration value="skipToPrevious" />
+            <xs:enumeration value="skipToNext" />
+            <xs:enumeration value="addVoice" />
+            <xs:enumeration value="subVoice" />
+            <xs:enumeration value="mediaRepeatMode" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:element name="Pets">
+        <xs:complexType>
+            <xs:choice maxOccurs="unbounded" minOccurs="0">
+                <xs:element ref="PetImage" />
+                <xs:element ref="PetTask" />
+            </xs:choice>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="PetImage">
+        <xs:complexType>
+            <xs:attribute name="name" type="stringType" />
+            <xs:attribute name="from" type="numType" />
+            <xs:attribute name="to" type="numType" />
+            <xs:attribute name="time" type="numType" />
+            <xs:attribute name="repeat" type="numType" />
+            <xs:attribute name="grade" type="numType" />
+            <xs:attribute name="dir" type="stringType" />
+            <xs:attribute name="defaultDir" type="stringType" />
+            <xs:attribute name="record" type="numType" />
+            <xs:attribute name="requestCode" type="numType" />
+            <xs:attribute name="skillName" type="stringType" />
+            <xs:attribute name="interrupt" type="numType" />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="PetTask">
+        <xs:complexType>
+            <xs:choice maxOccurs="unbounded" minOccurs="0">
+                <xs:element name="Item">
+                    <xs:complexType>
+                        <xs:choice maxOccurs="unbounded" minOccurs="0">
+                            <xs:element ref="PetImage" />
+                        </xs:choice>
+                        <xs:attribute name="mapList" type="stringType" />
+                    </xs:complexType>
+                </xs:element>
+            </xs:choice>
+            <xs:attribute name="priority" type="xs:float" />
+            <xs:attribute name="mapList" type="stringType" />
+            <xs:attribute name="condition" type="expression" />
+            <xs:attribute name="model" type="stringType" />
+            <xs:attribute name="deleteAfterUser" type="booleanType" />
+            <xs:attribute name="loop" type="booleanType" />
+            <xs:attribute name="rand" type="booleanType" />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="PetGroup">
+        <xs:complexType>
+            <xs:choice maxOccurs="unbounded" minOccurs="0">
+                <xs:element ref="PetText" />
+            </xs:choice>
+            <xs:attribute name="duration" type="numType" />
+            <xs:attribute name="bg" type="stringType" />
+            <xs:attribute name="offx" type="expression" />
+            <xs:attribute name="offy" type="expression" />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="PetText">
+        <xs:complexType>
+            <xs:attribute name="requestCode" type="numType" />
+            <xs:attribute name="format" type="expression" />
+            <xs:attribute name="text" type="expression" />
+            <xs:attribute name="color" type="colorType" />
+            <xs:attribute name="size" type="numType" />
+            <xs:attribute name="marginLeft" type="numType" />
+            <xs:attribute name="marginRight" type="numType" />
+            <xs:attribute name="marginTop" type="numType" />
+            <xs:attribute name="marginBottom" type="numType" />
+            <xs:attribute name="bold" type="booleanType" />
+            <xs:attribute name="textalign" type="stringType" />
+            <xs:attribute name="repeatMsg" type="stringType" />
+            <xs:attribute name="clickable" type="stringType" />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="PetSkill">
+        <xs:complexType>
+            <xs:attribute name="icon" type="stringType" />
+            <xs:attribute name="skill" type="stringType" />
+            <xs:attribute name="rank" type="numType" />
+            <xs:attribute name="common" type="booleanType" />
+            <xs:attribute name="name" type="stringType" />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="EditCommand">
+        <xs:complexType>
+            <xs:attribute name="editId" type="stringType" />
+            <xs:attributeGroup ref="commandAttrs" />
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
