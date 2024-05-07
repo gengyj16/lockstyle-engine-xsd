@@ -51,7 +51,6 @@
             <xs:element ref="Slider" />
             <xs:element ref="Button" />
             <xs:element ref="Unlocker" />
-            <xs:element ref="UnlockerView" />
             <xs:element ref="MusicControl" />
             <xs:element ref="Video" />
             <xs:element ref="VirtualScreen" />
@@ -163,13 +162,6 @@
                 <xs:element ref="Line" />
                 <xs:element ref="Arc" />
             </xs:choice>
-        </xs:complexType>
-    </xs:element>
-    <!-- 外部自定义UnlockView组件解析:用于完成一些定制化的解锁方式和效果 -->
-    <xs:element name="UnlockerView">
-        <xs:complexType>
-            <xs:attribute name="class" type="stringType" />
-            <xs:attribute name="params" type="stringType" />
         </xs:complexType>
     </xs:element>
     <!-- 音乐组件标签解析 -->
@@ -824,53 +816,14 @@
             <xs:attribute name="frameRate" type="stringType" />
         </xs:complexType>
     </xs:element>
-    <!-- 跟手拖尾粒子 -->
-    <xs:element name="ParticleView">
-        <xs:complexType>
-            <xs:sequence>
-                <xs:element maxOccurs="unbounded" minOccurs="0" ref="PathData" />
-            </xs:sequence>
-            <xs:attribute name="w" type="expression" />
-            <xs:attribute name="h" type="expression" />
-            <xs:attribute name="count" type="numType" />
-            <xs:attribute name="move_radius" type="expression" />
-            <xs:attribute name="speek_sec" type="expression" />
-            <xs:attribute name="reduce_size" type="numType" />
-            <xs:attribute name="set_path" type="expression" />
-            <xs:attribute name="src" type="stringType" />
-        </xs:complexType>
-    </xs:element>
-    <!-- 路径 -->
-    <xs:element name="PathData">
-        <xs:complexType>
-            <xs:sequence>
-                <xs:element maxOccurs="unbounded" minOccurs="0" ref="Range" />
-            </xs:sequence>
-        </xs:complexType>
-    </xs:element>
+
     <!-- Range包含一个小方形的坐标数据 -->
     <xs:element name="Range">
         <xs:complexType>
             <xs:attribute name="rect" type="stringType" />
         </xs:complexType>
     </xs:element>
-    <!-- 水波纹 -->
-    <xs:element name="WaterWallpaper">
-        <xs:complexType>
-            <xs:group maxOccurs="unbounded" minOccurs="0" ref="animationGroup" />
-            <xs:attributeGroup ref="viewCom" />
-            <xs:attribute name="blur" type="numType" />
-            <xs:attribute name="src" type="stringType" />
-            <xs:attribute name="xfermode" type="stringType" />
-            <xs:attribute name="srcExp" type="expression" />
-            <xs:attribute name="srcid" type="numType" />
-            <xs:attribute name="useVirtualScreen" type="booleanType" />
-            <xs:attribute name="color" type="expression" />
-            <xs:attribute name="xmesh" type="expression" />
-            <xs:attribute name="ymesh" type="expression" />
-            <xs:attribute name="torsion" type="stringType" />
-        </xs:complexType>
-    </xs:element>
+
     <!-- 网格化功能 -->
     <xs:element name="MeshImage">
         <xs:complexType>
@@ -942,221 +895,8 @@
             <xs:attribute name="no_move_distance_y" type="expression" />
         </xs:complexType>
     </xs:element>
-    <!-- 跑马灯 -->
-    <xs:element name="Marquee">
-        <xs:complexType>
-            <xs:attributeGroup ref="viewCom" />
-            <xs:attribute name="state" type="expression" />
-            <xs:attribute name="showTime" type="expression" />
-            <xs:attribute name="deltaAngle" type="expression" />
-            <xs:attribute name="color" type="colorType" />
-            <xs:attribute name="marqueeColor" type="colorType" />
-            <xs:attribute name="marqueePos" type="expression" />
-            <xs:attribute name="weight" type="expression" />
-        </xs:complexType>
-    </xs:element>
-    <!-- 翻书页 -->
-    <xs:element name="FlipBook">
-        <xs:complexType>
-            <xs:group maxOccurs="unbounded" minOccurs="0" ref="animationGroup" />
-            <xs:attribute name="x" type="expression" />
-            <xs:attribute name="y" type="expression" />
-            <xs:attribute name="color" type="colorType" />
-            <xs:attribute name="src" type="stringType" />
-            <xs:attribute name="bgsrc" type="stringType" />
-            <xs:attribute name="useVirtualScreen" type="booleanType" />
-            <xs:attribute name="srcExp" type="stringType" />
-        </xs:complexType>
-    </xs:element>
-    <!-- 情景动效 -->
-    <xs:element name="Situations">
-        <xs:complexType>
-            <xs:sequence>
-                <xs:element maxOccurs="unbounded" minOccurs="0" ref="situation" />
-            </xs:sequence>
-            <xs:attributeGroup ref="viewCom" />
-            <xs:attribute name="vars" type="stringType" />
-            <xs:attribute name="affect" type="stringType" />
-            <xs:attribute name="delay" type="stringType" />
-            <xs:attribute name="restrict" type="stringType" />
-            <xs:attribute name="sync" type="expression" />
-        </xs:complexType>
-    </xs:element>
-    <!-- 单个情景 -->
-    <xs:element name="situation">
-        <xs:complexType>
-            <xs:choice maxOccurs="unbounded" minOccurs="0">
-                <xs:element ref="Image" />
-                <xs:element ref="VirtualScreen" />
-            </xs:choice>
-            <xs:attribute name="name" type="stringType" />
-            <xs:attribute name="start" type="stringType" />
-            <xs:attribute name="end" type="stringType" />
-            <xs:attribute name="visibility_situation" type="expression" />
-        </xs:complexType>
-    </xs:element>
-    <!-- 上下推折叠效果，左右推窗帘效果 -->
-    <xs:element name="Fold">
-        <xs:complexType>
-            <xs:attributeGroup ref="viewCom" />
-            <xs:attribute name="src" type="stringType" />
-            <xs:attribute name="foldNum" default="2" type="numType" />
-            <xs:attribute name="coversrc" type="stringType" />
-            <xs:attribute name="slidingAppear" type="booleanType" />
-            <xs:attribute name="srcid" type="expression" />
-            <xs:attribute name="useVirtualScreen" default="false" type="booleanType" />
-            <xs:attribute name="srcExp" type="expression" />
-        </xs:complexType>
-    </xs:element>
-    <!-- 粒子散落 -->
-    <xs:element name="ParticleScatter">
-        <xs:complexType>
-            <xs:sequence>
-                <xs:element maxOccurs="unbounded" minOccurs="0" ref="Item" />
-            </xs:sequence>
-            <xs:attributeGroup ref="viewCom" />
-            <xs:attribute name="duration" default="1000" type="expression" />
-            <xs:attribute name="style" default="1" type="expression" />
-            <xs:attribute name="shaketime" default="150" type="expression" />
-            <xs:attribute name="path" type="stringType" />
-            <xs:attribute name="reverse" type="booleanType" />
-            <xs:attribute name="unlock" type="booleanType" />
-            <xs:attribute name="src" type="stringType" />
-            <xs:attribute name="useVirtualScreen" default="false" type="booleanType" />
-            <xs:attribute name="shape" default="0" type="expression" />
-            <xs:attribute name="radius" default="2" type="expression" />
-            <xs:attribute name="start" type="expression" />
-            <xs:attribute name="rect" type="expression" />
-            <xs:attribute name="controlMode" type="expression" />
-        </xs:complexType>
-    </xs:element>
-    <!-- 路径解析 -->
-    <xs:element name="PathUtil">
-        <xs:complexType>
-            <xs:attribute name="name" type="stringType" />
-            <xs:attribute name="path" type="stringType" />
-        </xs:complexType>
-    </xs:element>
-    <!-- 路径动画 -->
-    <xs:element name="PathRun">
-        <xs:complexType>
-            <xs:attributeGroup ref="viewCom" />
-            <xs:attribute name="color" type="colorType" />
-            <xs:attribute name="highlightlen" default="0" type="expression" />
-            <xs:attribute name="weight" default="5" type="expression" />
-            <xs:attribute name="speed" default="20" type="expression" />
-            <xs:attribute name="loop" type="booleanType" />
-            <xs:attribute name="fillflag" type="booleanType" />
-            <xs:attribute name="loopcount" default="0" type="expression" />
-            <xs:attribute name="async" type="booleanType" />
-            <xs:attribute name="src" type="stringType" />
-            <xs:attribute name="imageWidth" default="40" type="expression" />
-            <xs:attribute name="imageHeight" default="40" type="expression" />
-            <xs:attribute name="shake" type="booleanType" />
-            <xs:attribute name="imageTransX" default="0" type="expression" />
-            <xs:attribute name="imageTransY" default="0" type="expression" />
-            <xs:attribute name="imageTransformStyle" default="0" type="expression" />
-        </xs:complexType>
-    </xs:element>
-    <!--  常用形状渲染功能 -->
-    <xs:element name="Graph">
-        <xs:complexType>
-            <xs:attribute name="x" type="expression" />
-            <xs:attribute name="y" type="expression" />
-            <xs:attribute name="radius" type="expression" />
-            <xs:attribute name="left" type="expression" />
-            <xs:attribute name="top" type="expression" />
-            <xs:attribute name="right" type="expression" />
-            <xs:attribute name="bottom" type="expression" />
-            <xs:attribute name="pathname" type="stringType" />
-            <xs:attribute name="shape" type="stringType" />
-            <xs:attribute name="wave" type="stringType" />
-        </xs:complexType>
-    </xs:element>
-    <!--  绽放功能描述 -->
-    <xs:element name="Bloom">
-        <xs:complexType>
-            <xs:sequence>
-                <xs:element maxOccurs="unbounded" minOccurs="0" ref="Entry" />
-            </xs:sequence>
-            <xs:attributeGroup ref="viewCom" />
-            <xs:attribute name="duration" default="1000" type="expression" />
-            <xs:attribute name="style" default="0" type="expression" />
-            <xs:attribute name="shaketime" default="150" type="expression" />
-            <xs:attribute name="radius" default="2" type="expression" />
-            <xs:attribute name="scale" type="numType" />
-        </xs:complexType>
-    </xs:element>
-    <!--  全景动效 -->
-    <xs:element name="VR">
-        <xs:complexType>
-            <xs:attribute name="src" type="stringType" />
-            <xs:attribute name="srcid" default="0" type="expression" />
-            <xs:attribute name="imageType" type="stringType" />
-            <xs:attribute name="touchType" default="0" type="expression" />
-        </xs:complexType>
-    </xs:element>
-    <!-- Entry -->
-    <xs:element name="Entry">
-        <xs:complexType>
-            <xs:attribute name="number" type="numType" />
-            <xs:attribute name="width" default="4" type="expression" />
-            <xs:attribute name="height" default="4" type="expression" />
-            <xs:attribute name="src" type="stringType" />
-        </xs:complexType>
-    </xs:element>
-    <!--  图片粒子 -->
-    <xs:element name="ImageParticleView">
-        <xs:complexType>
-            <xs:attributeGroup ref="viewCom" />
-            <xs:attribute name="src" type="stringType" />
-            <xs:attribute name="rectWidth" default="30" type="numType" />
-            <xs:attribute name="maxRadius" default="30" type="numType" />
-            <xs:attribute name="rgbThreshold" default="210" type="numType" />
-            <xs:attribute name="friction" default="0.7" type="numType" />
-            <xs:attribute name="controlArea" default="150" type="numType" />
-            <xs:attribute name="actionType" type="stringType" />
-            <xs:attribute name="colorType" type="stringType" />
-        </xs:complexType>
-    </xs:element>
-    <!--  图片滤镜 -->
-    <xs:element name="ImageFilterView">
-        <xs:complexType>
-            <xs:sequence>
-                <xs:element name="filter" maxOccurs="unbounded" minOccurs="0" />
-            </xs:sequence>
-            <xs:attribute name="src" type="stringType" />
-            <xs:attribute name="x" default="0" type="numType" />
-            <xs:attribute name="y" default="0" type="numType" />
-            <xs:attribute name="w" default="0" type="numType" />
-            <xs:attribute name="h" default="0" type="numType" />
-            <xs:attribute name="visibility" default="1" type="numType" />
-        </xs:complexType>
-    </xs:element>
-    <!-- filter -->
-    <xs:element name="filter">
-        <xs:complexType>
-            <xs:attribute name="x" default="0" type="numType" />
-            <xs:attribute name="y" default="0" type="numType" />
-            <xs:attribute name="width" type="numType" />
-            <xs:attribute name="height" type="numType" />
-            <xs:attribute name="filterType" type="stringType" />
-            <xs:attribute name="args" type="stringType" />
-        </xs:complexType>
-    </xs:element>
 
-    <!--  下落动效 -->
-    <xs:element name="DropPhysicalView">
-        <xs:complexType>
-            <xs:sequence>
-                <xs:element name="ItemGroup" maxOccurs="unbounded" minOccurs="0" />
-            </xs:sequence>
-            <xs:attributeGroup ref="viewCom" />
-            <xs:attribute name="gravityX" type="expression" />
-            <xs:attribute name="gravityY" type="expression" />
-            <xs:attribute name="airDensity" default="12.93" type="expression" />
-        </xs:complexType>
-    </xs:element>
+
     <!-- ItemGroup -->
     <xs:element name="ItemGroup">
         <xs:complexType>
