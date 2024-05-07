@@ -9,7 +9,7 @@ Install [XML Language Support by Red Hat](https://marketplace.visualstudio.com/i
 {
     "xml.fileAssociations": [
         {
-            "pattern": "manifest.xml",
+            "pattern": "**/*manifest*.xml",
             "systemId": "(URL or local path to manifest.xsd)"
         }
     ],
