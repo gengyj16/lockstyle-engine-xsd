@@ -1,43 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!-- Update log
-    2024.05.06 init: first version support for MAML, may contain unnecessary attrs.
+    2024.05.06 init: first version support for MAML, may contain unnecessary attrs,
+    2024.05.07 mod: allow for only 1 <VariableBinders/> tag,
+    2024.05.07 add: srcType rate haptic MusicControl Item useVariableUpdater interceptTouch ...
  -->
 
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="qualified">
     <xs:element name="Lockscreen">
         <xs:complexType>
-            <xs:choice maxOccurs="unbounded" minOccurs="0">
-                <!-- todo VariableBinders 只能出现一次 -->
-                <xs:element ref="VariableBinders" />
-                <xs:element ref="Wallpaper" />
-                <xs:element ref="ExternalCommands" />
-                <xs:element ref="Var" />
-                <xs:element ref="VarArray" />
-                <xs:element ref="Group" />
-                <xs:element ref="Frame" />
-                <xs:element ref="Image" />
-                <xs:element ref="ImageNumber" />
-                <xs:element ref="ImageChars" />
-                <xs:element ref="Time" />
-                <xs:element ref="DateTime" />
-                <xs:element ref="Slider" />
-                <xs:element ref="Button" />
-                <xs:element ref="Unlocker" />
-                <xs:element ref="UnlockerView" />
-                <xs:element ref="MusicControl" />
-                <xs:element ref="Video" />
-                <xs:element ref="VirtualScreen" />
-                <xs:element ref="Rectangle" />
-                <xs:element ref="Circle" />
-                <xs:element ref="Ellipse" />
-                <xs:element ref="Line" />
-                <xs:element ref="Arc" />
-                <xs:element ref="Array" />
-                <xs:element ref="Text" />
-                <xs:element ref="MediaControl" />
-                <!-- <xs:any processContents="lax" /> -->
-            </xs:choice>
+            <xs:sequence>
+                <xs:group ref="rootTags" maxOccurs="unbounded" minOccurs="0" />
+                <xs:element ref="VariableBinders" maxOccurs="1" minOccurs="0" />
+                <xs:group ref="rootTags" maxOccurs="unbounded" minOccurs="0" />
+            </xs:sequence>
             <xs:attribute name="frameRate" default="60" />
             <xs:attribute name="screenWidth" type="numType" />
             <xs:attribute name="screenHeight" type="numType" />
@@ -45,6 +21,10 @@
             <xs:attribute name="version" type="numType" />
             <xs:attribute name="pressure" type="booleanType" />
             <xs:attribute name="displayDesktop" type="booleanType" />
+            <xs:attribute name="useVariableUpdater" type="stringType" />
+            <xs:attribute name="disableCutRoundCorner" type="booleanType" />
+            <xs:attribute name="useHardwareCanvas" type="booleanType" />
+            <xs:attribute name="cornerCutType" type="stringType" />
         </xs:complexType>
     </xs:element>
     <xs:element name="Root" substitutionGroup="Lockscreen" />
@@ -52,6 +32,40 @@
     <xs:element name="CommonWallpaper" substitutionGroup="Lockscreen" />
     <xs:element name="BinderList" substitutionGroup="VariableBinders" />
     <xs:element name="AttrDataBinder" substitutionGroup="Variable" />
+    <xs:element name="BroadcastBinder" substitutionGroup="ContentProviderBinder" />
+    <xs:element name="Consequent" substitutionGroup="Trigger" />
+    <xs:element name="Alternate" substitutionGroup="Trigger" />
+    <xs:group name="rootTags">
+        <xs:choice>
+            <xs:element ref="Wallpaper" />
+            <xs:element ref="ExternalCommands" />
+            <xs:element ref="Var" />
+            <xs:element ref="VarArray" />
+            <xs:element ref="Group" />
+            <xs:element ref="Frame" />
+            <xs:element ref="Image" />
+            <xs:element ref="ImageNumber" />
+            <xs:element ref="ImageChars" />
+            <xs:element ref="Time" />
+            <xs:element ref="DateTime" />
+            <xs:element ref="Slider" />
+            <xs:element ref="Button" />
+            <xs:element ref="Unlocker" />
+            <xs:element ref="UnlockerView" />
+            <xs:element ref="MusicControl" />
+            <xs:element ref="Video" />
+            <xs:element ref="VirtualScreen" />
+            <xs:element ref="Rectangle" />
+            <xs:element ref="Circle" />
+            <xs:element ref="Ellipse" />
+            <xs:element ref="Line" />
+            <xs:element ref="Arc" />
+            <xs:element ref="Array" />
+            <xs:element ref="Text" />
+            <xs:element ref="MediaControl" />
+            <xs:element ref="FramerateController" />
+        </xs:choice>
+    </xs:group>
     <!-- 圆形shape -->
     <xs:element name="CircleShape">
         <xs:complexType>
@@ -161,11 +175,7 @@
     <!-- 音乐组件标签解析 -->
     <xs:element name="MusicControl">
         <xs:complexType>
-            <xs:choice maxOccurs="unbounded" minOccurs="0">
-                <xs:element name="MusicImage" type="imageType" />
-                <xs:element name="MusicText" type="textType" />
-                <xs:element name="MusicButton" type="buttonType" />
-            </xs:choice>
+            <xs:group maxOccurs="unbounded" minOccurs="0" ref="viewGroup" />
             <xs:attribute name="name" type="stringType" />
             <xs:attribute name="x" type="expression" />
             <xs:attribute name="y" type="expression" />
@@ -266,7 +276,8 @@
             <xs:attributeGroup ref="viewCom" />
             <xs:attribute name="src" type="expression" />
             <xs:attribute name="string" type="expression" />
-            <xs:attribute name="mapList" type="stringType" />
+            <xs:attribute name="number" type="expression" />
+            <xs:attribute name="charNameMap" type="stringType" />
             <xs:attribute name="space" type="expression" />
         </xs:complexType>
     </xs:element>
@@ -439,6 +450,8 @@
             <xs:attribute name="initSpeedY" type="expression" />
             <xs:attribute name="src" type="stringType" />
             <xs:attribute name="value" type="expression" />
+            <xs:attribute name="time" type="numType" />
+            <xs:attribute name="easeType" type="easeAttr" />
         </xs:complexType>
     </xs:element>
 
@@ -633,7 +646,6 @@
                         <xs:attribute name="y" type="numType" />
                         <xs:attribute name="time" type="xs:long" />
                         <xs:attribute name="easeType" type="easeAttr" />
-                        <xs:attribute name="varSpeedFlag" type="easeAttr" />
                     </xs:complexType>
                 </xs:element>
             </xs:choice>
@@ -650,7 +662,6 @@
                         <xs:attribute name="a" type="numType" />
                         <xs:attribute name="time" type="xs:long" />
                         <xs:attribute name="easeType" type="easeAttr" />
-                        <xs:attribute name="varSpeedFlag" type="easeAttr" />
                     </xs:complexType>
                 </xs:element>
             </xs:sequence>
@@ -668,7 +679,6 @@
                         <xs:attribute name="h" type="numType" />
                         <xs:attribute name="time" type="xs:long" />
                         <xs:attribute name="easeType" type="easeAttr" />
-                        <xs:attribute name="varSpeedFlag" type="easeAttr" />
                     </xs:complexType>
                 </xs:element>
             </xs:sequence>
@@ -689,7 +699,6 @@
             <xs:attribute name="angle" type="numType" />
             <xs:attribute name="time" type="xs:long" />
             <xs:attribute name="easeType" type="easeAttr" />
-            <xs:attribute name="varSpeedFlag" type="easeAttr" />
         </xs:complexType>
     </xs:element>
     <!-- 帧动画 -->
@@ -703,7 +712,6 @@
                         <xs:attribute name="src" type="stringType" use="required" />
                         <xs:attribute name="time" type="xs:long" />
                         <xs:attribute name="easeType" type="easeAttr" />
-                        <xs:attribute name="varSpeedFlag" type="easeAttr" />
                     </xs:complexType>
                 </xs:element>
             </xs:sequence>
@@ -716,6 +724,8 @@
         <xs:complexType>
             <xs:sequence>
                 <xs:element maxOccurs="unbounded" minOccurs="0" ref="AniFrame" />
+                <xs:element maxOccurs="unbounded" minOccurs="0" ref="Item" />
+                <xs:element maxOccurs="unbounded" minOccurs="0" ref="Trigger" />
             </xs:sequence>
             <xs:attribute name="delay" type="numType" />
             <xs:attribute name="loop" type="booleanType" />
@@ -729,7 +739,6 @@
             <xs:attribute name="time" type="expression" />
             <xs:attribute name="value" type="expression" />
             <xs:attribute name="easeType" type="easeAttr" />
-            <xs:attribute name="varSpeedFlag" type="easeAttr" />
         </xs:complexType>
     </xs:element>
     <!-- 传感器 -->
@@ -755,6 +764,7 @@
             <xs:sequence>
                 <xs:element maxOccurs="unbounded" minOccurs="0" ref="Variable" />
                 <xs:element maxOccurs="unbounded" minOccurs="0" ref="List" />
+                <xs:element maxOccurs="unbounded" minOccurs="0" ref="Trigger" />
             </xs:sequence>
             <xs:attribute name="uri" type="stringType" />
             <xs:attribute name="uriFormat" type="stringType" />
@@ -774,6 +784,7 @@
                 <xs:element maxOccurs="unbounded" minOccurs="0" ref="Variable" />
             </xs:sequence>
             <xs:attribute name="type" type="stringType" />
+            <xs:attribute name="rate" type="numType" />
         </xs:complexType>
     </xs:element>
     <!-- Variable -->
@@ -796,16 +807,18 @@
         </xs:complexType>
     </xs:element>
     <!-- 高级动态帧率 -->
-    <xs:element name="VariableFramerate">
+    <xs:element name="FramerateController">
         <xs:complexType>
             <xs:sequence>
-                <xs:element maxOccurs="unbounded" minOccurs="0" ref="VariablePoint" />
+                <xs:element maxOccurs="unbounded" minOccurs="0" ref="ControlPoint" />
             </xs:sequence>
-            <xs:attribute name="visibility" type="expression" />
+            <xs:attribute name="name" type="stringType" />
+            <xs:attribute name="initPause" type="booleanType" />
+            <xs:attribute name="loop" type="booleanType" />
         </xs:complexType>
     </xs:element>
     <!-- The type Control point -->
-    <xs:element name="VariablePoint">
+    <xs:element name="ControlPoint">
         <xs:complexType>
             <xs:attribute name="time" type="stringType" />
             <xs:attribute name="frameRate" type="stringType" />
@@ -1205,6 +1218,8 @@
                 <xs:element ref="VibrateCommand" />
                 <xs:element ref="MediaCommand" />
                 <xs:element ref="AnimationCommand" />
+                <xs:element ref="BinderCommand" />
+                <xs:element ref="IfCommand" />
             </xs:choice>
             <xs:attribute name="name" type="stringType" />
             <xs:attribute name="action" type="stringType" />
@@ -1225,6 +1240,18 @@
             <xs:attributeGroup ref="commandAttrs" />
         </xs:complexType>
     </xs:element>
+    <!-- 条件命令 -->
+    <xs:element name="IfCommand">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Consequent"/>
+                <xs:element name="Alternate"/>
+
+            </xs:sequence>
+            <xs:attribute name="ifCondition" type="expression"  />
+        </xs:complexType>
+    </xs:element>
+
     <!-- 动画命令 -->
     <xs:element name="AnimationCommand">
         <xs:complexType>
@@ -1233,7 +1260,14 @@
             <xs:attributeGroup ref="commandAttrs" />
         </xs:complexType>
     </xs:element>
-
+    <!-- Binder命令 -->
+    <xs:element name="BinderCommand">
+        <xs:complexType>
+            <xs:attribute name="name" type="stringType" />
+            <xs:attribute name="command" type="stringType" />
+            <xs:attributeGroup ref="commandAttrs" />
+        </xs:complexType>
+    </xs:element>
     <!-- 声音命令 -->
     <xs:element name="SoundCommand">
         <xs:complexType>
@@ -1300,6 +1334,7 @@
             <xs:attribute name="operType" type="stringType" />
             <xs:attribute name="market" type="stringType" />
             <xs:attribute name="broadcast" type="booleanType" />
+            <xs:attribute name="flags" type="numType" />
             <xs:attributeGroup ref="commandAttrs" />
         </xs:complexType>
     </xs:element>
@@ -1425,6 +1460,7 @@
     <xs:attributeGroup name="geometryGroup">
         <xs:attributeGroup ref="viewCom" />
         <xs:attribute name="strokeColor" type="colorType" />
+        <xs:attribute name="strokeAlign" type="stringType" />
         <xs:attribute name="fillColor" type="colorType" />
         <xs:attribute name="weight" type="expression" />
         <xs:attribute name="cap" type="stringType" />
@@ -1544,6 +1580,8 @@
         <xs:attribute name="marqueeRepeatLimit" type="numType" />
         <xs:attribute name="clickable" type="booleanType" />
         <xs:attribute name="delayTime" default="3000" type="numType" />
+        <xs:attribute name="fontPath" type="stringType" />
+        <xs:attribute name="fontFamily" type="stringType" />
     </xs:complexType>
     <!-- 图片type -->
     <xs:complexType name="imageType">
@@ -1563,7 +1601,7 @@
         <xs:attribute name="isRefresh" type="stringType" />
         <xs:attribute name="longPressContinued" type="stringType" />
         <xs:attribute name="isPlayingVar" type="stringType" />
-
+        <xs:attribute name="srcType" type="stringType" />
     </xs:complexType>
     <!-- 按钮type -->
     <xs:complexType name="buttonType">
@@ -1579,7 +1617,8 @@
         <xs:attribute name="y" type="expression" />
         <xs:attribute name="w" type="expression" />
         <xs:attribute name="h" type="expression" />
-        <xs:attribute name="interceptButtonTouch" type="expression" />
+        <xs:attribute name="interceptTouch" type="booleanType" />
+        <xs:attribute name="haptic" type="booleanType" />
         <xs:attribute name="visibility" type="expression" />
         <xs:attribute name="longTouchTime" type="expression" />
         <xs:attribute name="alignChildren" type="booleanType" />
