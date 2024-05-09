@@ -4,7 +4,7 @@
     2024.05.06 init: first version support for MAML, may contain unnecessary attrs,
     2024.05.07 mod: allow for only 1 <VariableBinders/> tag,
     2024.05.07 add: srcType rate haptic MusicControl Item useVariableUpdater interceptTouch ...
-    2024.05.09 add: numPara strPara
+    2024.05.09 add: numPara strPara tolerance alwaysShow Icon tint
  -->
 
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="qualified">
@@ -26,10 +26,15 @@
             <xs:attribute name="disableCutRoundCorner" type="booleanType" />
             <xs:attribute name="useHardwareCanvas" type="booleanType" />
             <xs:attribute name="cornerCutType" type="stringType" />
+            <xs:attribute name="width" type="numType" />
+            <xs:attribute name="height" type="numType" />
+            <xs:attribute name="resDensity" type="numType" />
+            <xs:attribute name="compiler" type="booleanType" />
         </xs:complexType>
     </xs:element>
     <xs:element name="Root" substitutionGroup="Lockscreen" />
     <xs:element name="Widget" substitutionGroup="Lockscreen" />
+    <xs:element name="Icon" substitutionGroup="Lockscreen" />
     <xs:element name="CommonWallpaper" substitutionGroup="Lockscreen" />
     <xs:element name="BinderList" substitutionGroup="VariableBinders" />
     <xs:element name="AttrDataBinder" substitutionGroup="Variable" />
@@ -397,7 +402,9 @@
             <xs:attribute name="alignV" type="stringType" />
             <xs:attribute name="pivotX" default="0" type="expression" />
             <xs:attribute name="pivotY" default="0" type="expression" />
-            <xs:attribute name="scale" default="0" type="expression" />
+            <xs:attribute name="scale" default="1" type="expression" />
+            <xs:attribute name="scaleX" default="1" type="expression" />
+            <xs:attribute name="scaleY" default="1" type="expression" />
         </xs:complexType>
     </xs:element>
     <!-- 虚拟屏幕，用于做翻书，百叶窗之类的效果 -->
@@ -489,6 +496,7 @@
             </xs:sequence>
             <xs:attribute name="x" type="expression" />
             <xs:attribute name="y" type="expression" />
+            <xs:attribute name="tolerance" type="numType" />
         </xs:complexType>
     </xs:element>
     <!-- 滑动的点 -->
@@ -897,7 +905,6 @@
         </xs:complexType>
     </xs:element>
 
-
     <!-- ItemGroup -->
     <xs:element name="ItemGroup">
         <xs:complexType>
@@ -985,11 +992,11 @@
     <xs:element name="IfCommand">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="Consequent"/>
-                <xs:element name="Alternate"/>
+                <xs:element name="Consequent" />
+                <xs:element name="Alternate" />
 
             </xs:sequence>
-            <xs:attribute name="ifCondition" type="expression"  />
+            <xs:attribute name="ifCondition" type="expression" />
         </xs:complexType>
     </xs:element>
 
@@ -1191,6 +1198,7 @@
         <xs:attribute name="bounceAcceleration" type="expression" />
         <xs:attribute name="visibility" type="expression" />
         <xs:attribute name="always" type="expression" />
+        <xs:attribute name="alwaysShow" type="booleanType" />
         <xs:attribute name="keyPoint" type="stringType" />
     </xs:attributeGroup>
     <!-- 命令的共有属性 -->
@@ -1245,6 +1253,7 @@
         <xs:attribute name="scaleX" default="1" type="expression" />
         <xs:attribute name="scaleY" default="1" type="expression" />
         <xs:attribute name="rotate" default="0" type="expression" />
+        <xs:attribute name="scale" default="1" type="expression" />
         <!-- <xs:anyAttribute processContents="lax" /> -->
     </xs:attributeGroup>
     <!-- pointType -->
@@ -1345,7 +1354,15 @@
         <xs:attribute name="longPressContinued" type="stringType" />
         <xs:attribute name="isPlayingVar" type="stringType" />
         <xs:attribute name="srcType" type="stringType" />
-        <xs:attribute name="scale" type="expression" />
+        <xs:attribute name="tint" type="colorType" />
+        <xs:attribute name="tintmode" type="numType" />
+        <xs:attribute name="cornerRadius" type="numType" />
+        <xs:attribute name="cornerRadiusExp" type="expression" />
+        <xs:attribute name="loadAsync" type="booleanType" />
+        <xs:attribute name="antiAlias" type="booleanType" />
+        <xs:attribute name="srcFormat" type="expression" />
+        <xs:attribute name="srcForamtExp" type="expression" />
+        <xs:attribute name="srcParas" type="expression" />
     </xs:complexType>
     <!-- 按钮type -->
     <xs:complexType name="buttonType">
