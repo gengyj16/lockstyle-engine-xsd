@@ -1345,6 +1345,7 @@
         <xs:attribute name="longPressContinued" type="stringType" />
         <xs:attribute name="isPlayingVar" type="stringType" />
         <xs:attribute name="srcType" type="stringType" />
+        <xs:attribute name="scale" type="expression" />
     </xs:complexType>
     <!-- 按钮type -->
     <xs:complexType name="buttonType">
