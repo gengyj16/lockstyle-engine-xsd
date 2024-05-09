@@ -4,6 +4,7 @@
     2024.05.06 init: first version support for MAML, may contain unnecessary attrs,
     2024.05.07 mod: allow for only 1 <VariableBinders/> tag,
     2024.05.07 add: srcType rate haptic MusicControl Item useVariableUpdater interceptTouch ...
+    2024.05.09 add: numPara strPara
  -->
 
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="qualified">
@@ -1048,6 +1049,8 @@
             <xs:attribute name="command" type="stringType" />
             <xs:attributeGroup ref="commandAttrs" />
             <xs:attribute name="adid" type="stringType" />
+            <xs:attribute name="numPara" type="numType" />
+            <xs:attribute name="strPara" type="stringType" />
         </xs:complexType>
     </xs:element>
     <!-- 通过IntentCommand命令，可以跳转打开其他应用程序App；注意：要记得加上解锁命令，否则只是在后台打开了，还要解锁才能看到 -->
