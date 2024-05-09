@@ -726,7 +726,7 @@
             <xs:sequence>
                 <xs:element maxOccurs="unbounded" minOccurs="0" ref="AniFrame" />
                 <xs:element maxOccurs="unbounded" minOccurs="0" ref="Item" />
-                <xs:element maxOccurs="unbounded" minOccurs="0" ref="Trigger" />
+                <xs:element maxOccurs="unbounded" minOccurs="0" ref="Triggers" />
             </xs:sequence>
             <xs:attribute name="delay" type="numType" />
             <xs:attribute name="loop" type="booleanType" />
@@ -971,6 +971,7 @@
             </xs:choice>
             <xs:attribute name="name" type="stringType" />
             <xs:attribute name="action" type="stringType" />
+            <xs:attribute name="condition" type="expression" />
             <xs:attribute name="target" type="stringType" />
             <xs:attribute name="property" type="stringType" />
             <xs:attribute name="adid" type="stringType" />
