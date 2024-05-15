@@ -5,6 +5,7 @@
     2024.05.07 mod: allow for only 1 <VariableBinders/> tag,
     2024.05.07 add: srcType rate haptic MusicControl Item useVariableUpdater interceptTouch ...
     2024.05.09 add: numPara strPara tolerance alwaysShow Icon tint
+    2024.05.15 add: DateTime-fontFamily
  -->
 
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="qualified">
@@ -263,6 +264,7 @@
             <xs:attribute name="color" type="colorType" />
             <xs:attribute name="size" type="expression" />
             <xs:attribute name="format" type="stringType" />
+            <xs:attribute name="fontFamily" type="stringType" />
         </xs:complexType>
     </xs:element>
 
