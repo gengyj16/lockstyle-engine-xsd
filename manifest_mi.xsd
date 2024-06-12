@@ -6,7 +6,7 @@
     2024.05.07 add: srcType rate haptic MusicControl Item useVariableUpdater interceptTouch ...
     2024.05.09 add: numPara strPara tolerance alwaysShow Icon tint
     2024.05.15 add: DateTime-fontFamily
-    2024.06.11 add: DateTime-bold expression-pattern
+    2024.06.12 add: DateTime-bold expression-pattern
  -->
 
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="qualified">
@@ -1424,10 +1424,10 @@
             <xs:enumeration value="BounceEaseInOut" />
         </xs:restriction>
     </xs:simpleType>
-    <!-- 表达式 四则运算不能连续出现 todo:括号成对 -->
+    <!-- 表达式 四则运算不能连续出现 ** 除外 todo:括号成对 -->
     <xs:simpleType name="expression">
         <xs:restriction base="stringType">
-            <xs:pattern value="[^+\-*/]*([+\-*/][^+\-*/]+)*[+\-*/]?[^+\-*/]*"/>
+            <xs:pattern value="[^+\-*/]*((\*{2}|[+\-*/])[^+\-*/]+)*[+\-*/]?[^+\-*/]*"/>
         </xs:restriction>
     </xs:simpleType>
     <!-- 字符串 -->
