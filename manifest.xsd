@@ -6,6 +6,7 @@
     2024.01.05 add: Item-value 
     2024.01.10 add: AniFrame-varSpeedFlag
     2024.06.11 add: expression-pattern
+    2024.07.11 add: textType-isSupportClipping var-Progress
  -->
 
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="qualified">
@@ -1162,6 +1163,21 @@
             <xs:attribute name="persist" type="booleanType" />
             <xs:attribute name="values" type="stringType" />
             <xs:attribute name="globalPersist" type="stringType" />
+            <!-- 音量/亮度进度条 -->
+            <xs:attribute name="direction" type="numType" />
+            <xs:attribute name="mode" type="numType" />
+            <xs:attribute name="topColor" type="colorType" />
+            <xs:attribute name="bottomColor" type="colorType" />
+            <xs:attribute name="bgSrc" type="stringType" />
+            <xs:attribute name="iconSrc" type="stringType" />
+            <xs:attribute name="x" default="0" type="expression" />
+            <xs:attribute name="y" default="0" type="expression" />
+            <xs:attribute name="w" default="0" type="expression" />
+            <xs:attribute name="h" default="0" type="expression" />
+            <xs:attribute name="progressWidth" type="expression" />
+            <xs:attribute name="iconWidth" type="expression" />
+            <xs:attribute name="iconHeight" type="expression" />
+            <xs:attribute name="roundedCorners" type="expression" />
         </xs:complexType>
     </xs:element>
     <!-- 变量数组元素 -->
@@ -2156,6 +2172,7 @@
         <xs:attribute name="shadowDy" type="numType" />
         <xs:attribute name="Radius" type="numType" />
         <xs:attribute name="marquee" type="booleanType" />
+        <xs:attribute name="isSupportClipping" type="booleanType" />
         <xs:attribute name="showTime" type="expression" />
         <xs:attribute name="showStyle" default="0" type="expression" />
         <xs:attribute name="tileMode" type="stringType" />
