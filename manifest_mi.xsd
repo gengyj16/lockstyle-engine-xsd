@@ -6,7 +6,8 @@
     2024.05.07 add: srcType rate haptic MusicControl Item useVariableUpdater interceptTouch ...
     2024.05.09 add: numPara strPara tolerance alwaysShow Icon tint
     2024.05.15 add: DateTime-fontFamily
-    2024.06.12 add: DateTime-bold expression-pattern
+    2024.06.11 add: DateTime-bold expression-pattern
+    2024.07.17 add: Arc-sweep close
  -->
 
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="qualified">
@@ -322,8 +323,8 @@
             <xs:group maxOccurs="unbounded" minOccurs="0" ref="animationGroup" />
             <xs:attributeGroup ref="geometryGroup" />
             <xs:attribute name="startAngle" type="expression" />
-            <xs:attribute name="sweepAngle" type="expression" />
-            <xs:attribute name="closure" type="booleanType" />
+            <xs:attribute name="sweep" type="expression" />
+            <xs:attribute name="close" type="booleanType" />
         </xs:complexType>
     </xs:element>
     <!-- 填充渐变 -->
