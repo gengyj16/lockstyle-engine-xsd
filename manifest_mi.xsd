@@ -1227,7 +1227,9 @@
     <!-- 通用属性 expression支持表达式，类型暂不确定；moveRect:string类型（eg:"255,222,111,111"） -->
     <xs:attributeGroup name="viewCom">
         <xs:attribute name="name" type="stringType" />
+        <!-- _开头属性为自用，引擎不解析 -->
         <xs:attribute name="_name" type="stringType" />
+        <xs:attribute name="_compile" type="stringType" />
         <xs:attribute name="align" type="stringType" />
         <xs:attribute name="alignV" type="stringType" />
         <xs:attribute name="x" default="0" type="expression" />
