@@ -7,6 +7,7 @@
     2024.01.10 add: AniFrame-varSpeedFlag
     2024.06.11 add: expression-pattern
     2024.07.11 add: textType-isSupportClipping var-Progress
+    2024.11.13 add: textType-marqueeGap marqueeSpeed (ov)
  -->
 
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="qualified">
@@ -2194,6 +2195,8 @@
         <xs:attribute name="marqueeRepeatLimit" type="numType" />
         <xs:attribute name="clickable" type="booleanType" />
         <xs:attribute name="delayTime" default="3000" type="numType" />
+        <xs:attribute name="marqueeSpeed" type="numType" />
+        <xs:attribute name="marqueeGap" type="numType" />
     </xs:complexType>
     <!-- 图片type -->
     <xs:complexType name="imageType">
