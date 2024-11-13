@@ -1325,6 +1325,7 @@
         <xs:attribute name="tileMode" type="stringType" />
         <xs:attribute name="marqueeColor" type="colorType" />
         <xs:attribute name="marqueeSpeed" type="numType" />
+        <xs:attribute name="marqueeGap" type="numType" />
         <xs:attribute name="spaceTimes" default="1" type="numType" />
         <xs:attribute name="spaceExtraAdd" default="0" type="numType" />
         <xs:attribute name="canPath" type="booleanType" />
