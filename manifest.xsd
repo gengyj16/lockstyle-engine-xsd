@@ -8,7 +8,7 @@
     2024.06.11 add: expression-pattern
     2024.07.11 add: textType-isSupportClipping var-Progress
     2024.11.13 add: textType-marqueeGap marqueeSpeed (ov)
-    2025.06.26 add: rotationType-varSpeedFl
+    2025.06.26 add: rotationType-varSpeedFlag
  -->
 
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="qualified">
