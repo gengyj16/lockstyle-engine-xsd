@@ -8,6 +8,7 @@
     2024.06.11 add: expression-pattern
     2024.07.11 add: textType-isSupportClipping var-Progress
     2024.11.13 add: textType-marqueeGap marqueeSpeed (ov)
+    2025.06.26 add: rotationType-varSpeedFl
  -->
 
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="qualified">
@@ -2158,7 +2159,8 @@
     <xs:complexType name="rotationType">
         <xs:attribute name="angle" type="stringType" />
         <xs:attribute name="time" type="xs:long" />
-        <xs:attribute name="easeType" type="stringType" />
+        <xs:attribute name="easeType" type="easeAttr" />
+        <xs:attribute name="varSpeedFlag" type="easeAttr" />
     </xs:complexType>
     <!--文本type -->
     <xs:complexType name="textType">
